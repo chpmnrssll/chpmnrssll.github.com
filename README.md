@@ -1,4 +1,4 @@
-chpmnrssll.github.com
+chpmnrssll.github.io
 =====================
 
 GitHub Help Categories / Pages
