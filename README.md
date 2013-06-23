@@ -3,7 +3,9 @@ chpmnrssll.github.com
 Russell Chapman
 
 GitHub Help Categories / Pages
+
 How I moved my websites to Dropbox and GitHub
+
 Host Your Own Webapp, Personal Nameplate, or Personal Website at Github
 
 Google JavaScript Style Guide
