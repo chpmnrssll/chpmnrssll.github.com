@@ -6,8 +6,8 @@ $(document).ready(function () {
 			
 			for(i = 0; i < dataLength; i++) {
 				$('#cms').append(
-					$('<div>', { html: '<h3>' + data[i].name + '</h3><em>' + data[i].date + '</em> - ' + data[i].content })
-					//$('<li>', { text: data[i].name + ', ' + data[i].content })
+					$('<span>', { html: data[i].name }).html() + "<hr/>" +
+					$('<span>', { html: data[i].content }).html() + "<br/>"
 				);
 			}
 		},
