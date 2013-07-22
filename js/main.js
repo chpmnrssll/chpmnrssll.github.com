@@ -6,7 +6,7 @@ $(document).ready(function () {
 			
 			for(i = 0; i < dataLength; i++) {
 				$('#cms').append(
-					$('<span>', { html: data[i].name }).html() + "<hr/>" +
+					$('<span>', { html: data[i].title }).html() + "<hr/>" +
 					$('<span>', { html: data[i].content }).html() + "<br/>"
 				);
 			}
