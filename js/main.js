@@ -5,10 +5,7 @@ $(document).ready(function () {
 			var i, dataLength = data.length;
 			
 			for(i = 0; i < dataLength; i++) {
-				$('#cms').append(
-					$('<span>', { html: data[i].title }).html() + "<hr/>" +
-					$('<span>', { html: data[i].content }).html() + "<br/>"
-				);
+				$('#cms').append("<div><h3>" + data[i].title + "</h3><hr/><span>" + data[i].content + "</span></div>");
 			}
 		},
 		simpleSheet: true 
