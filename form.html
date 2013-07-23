@@ -64,8 +64,9 @@
 		if ((ID !== "") && (title !== "") && (content !== "")) {
 			$.ajax({
 				//url: "https://docs.google.com/yourFormURL/formResponse",
-				url: "https://docs.google.com/a/chpmnrssll.github.io/forms/d/16MbujwclYrGre-wTZBcDL9Xy7149_msRZjTK7jGEpvI/formResponse",
-				data: { "entry.1" : ID, "entry.3" : title, "entry.4": content },
+				url: "https://docs.google.com/16MbujwclYrGre-wTZBcDL9Xy7149_msRZjTK7jGEpvI/formResponse",
+				//url: "https://docs.google.com/a/chpmnrssll.github.io/forms/d/16MbujwclYrGre-wTZBcDL9Xy7149_msRZjTK7jGEpvI/formResponse",
+				data: { "entry.B" : ID, "entry.C" : title, "entry.D": content },
 				type: "POST",
 				dataType: "xml",
 				statusCode: {
