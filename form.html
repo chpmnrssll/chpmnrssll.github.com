@@ -24,6 +24,11 @@
 			<section id="main_content" class="inner">
 				<form id="add_page" target="_self" onsubmit="" action="javascript: postToGoogle()">
 					<fieldset>
+						<label for="URL">URL</label>
+						<input id="URL" type="text" name="URL">
+					</fieldset>
+					<br/>
+					<fieldset>
 						<label for="ID">ID</label>
 						<input id="ID" type="text" name="ID">
 					</fieldset>
@@ -60,13 +65,15 @@
 		var ID = $('#ID').val();
 		var title = $('#Title').val();
 		var content = $('#Content').val();
+		var formKey = "16MbujwclYrGre-wTZBcDL9Xy7149_msRZjTK7jGEpvI";
 		
 		if ((ID !== "") && (title !== "") && (content !== "")) {
 			$.ajax({
 				//url: "https://docs.google.com/yourFormURL/formResponse",
-				url: "https://docs.google.com/16MbujwclYrGre-wTZBcDL9Xy7149_msRZjTK7jGEpvI/formResponse",
+				//url: "https://docs.google.com/16MbujwclYrGre-wTZBcDL9Xy7149_msRZjTK7jGEpvI/formResponse",
 				//url: "https://docs.google.com/a/chpmnrssll.github.io/forms/d/16MbujwclYrGre-wTZBcDL9Xy7149_msRZjTK7jGEpvI/formResponse",
-				data: { "entry.B" : ID, "entry.C" : title, "entry.D": content },
+				url: $('#URL').val(),
+				data: { "entry.2" : ID, "entry.3" : title, "entry.4": content },
 				type: "POST",
 				dataType: "xml",
 				statusCode: {
