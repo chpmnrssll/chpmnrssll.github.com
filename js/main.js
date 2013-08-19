@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	/*
 	Tabletop.init({
 		key: '0ArGSorgsgZvbdEFWWE5uN0NncDA0U1VHbzhHRV9YQVE',
 		callback: function(data, tabletop) { 
@@ -10,4 +11,5 @@ $(document).ready(function () {
 		},
 		simpleSheet: true 
 	});
+	*/
 });

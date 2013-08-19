@@ -5,20 +5,21 @@ require 'mongo/list.php';
 require 'mongo/command.php';
 
 define('MONGO_HOST', 'localhost');
+define('DB', 'api');
 
 $app = new Slim();
 
 // Routing
-$app->get('/:db/:collection', '_list');
-$app->post('/:db/:collection', '_create');
-$app->get('/:db/:collection/:id', '_read');
-$app->put('/:db/:collection/:id', '_update');
-$app->delete('/:db/:collection/:id', '_delete');
+$app->get('/:collection/', '_list');
+$app->post('/:collection/', '_create');
+$app->get('/:collection/:id', '_read');
+$app->put('/:collection/:id', '_update');
+$app->delete('/:collection/:id', '_delete');
 
 // @todo: add count collection command mongo/commands.php
 
 // List
-function _list($db, $collection) {
+function _list($collection) {
 	$select = array(
 		'limit'  => (isset($_GET['limit']))  ? $_GET['limit']  : false, 
 		'page'   => (isset($_GET['page']))   ? $_GET['page']   : false,
@@ -27,33 +28,33 @@ function _list($db, $collection) {
 		'sort'   => (isset($_GET['sort']))   ? $_GET['sort']   : false
 	);
 	
-	$data = mongoList(MONGO_HOST, $db, $collection, $select);
+	$data = mongoList(MONGO_HOST, DB, $collection, $select);
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
 
 // Create
-function _create($db, $collection) {
+function _create($collection) {
 	$document = json_decode(Slim::getInstance()->request()->getBody(), true);
-	$data = mongoCreate(MONGO_HOST, $db, $collection, $document);
+	$data = mongoCreate(MONGO_HOST, DB, $collection, $document);
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
 
 // Read
-function _read($db, $collection, $id) {
-	$data = mongoRead(MONGO_HOST, $db, $collection, $id);
+function _read($collection, $id) {
+	$data = mongoRead(MONGO_HOST, DB, $collection, $id);
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
 
 // Update
-function _update($db, $collection, $id) {
+function _update($collection, $id) {
 	$document = json_decode(Slim::getInstance()->request()->getBody(), true);
-	$data = mongoUpdate(MONGO_HOST, $db, $collection, $id, $document);
+	$data = mongoUpdate(MONGO_HOST, DB, $collection, $id, $document);
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
 
 // Delete
-function _delete($db, $collection, $id) {
-	$data = mongoDelete(MONGO_HOST, $db, $collection, $id);
+function _delete($collection, $id) {
+	$data = mongoDelete(MONGO_HOST, DB, $collection, $id);
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
 
