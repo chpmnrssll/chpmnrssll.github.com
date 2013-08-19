@@ -3,7 +3,6 @@ Slim PHP Mongo REST server
 
 MongoDB REST server using Slim PHP.
 
-I've just thrown this up quickly, there might be an error or two. But I am hoping to polish it a bit and add a few features to bring it more in line with the Node.js one I have used before. Probably a good starting point for people looking to do more advanced things, or just of interest anyone looking into Slim or Mongo with PHP. And if someone uses it and I get a pull request, all the better!
 
 Requirements
 ============
