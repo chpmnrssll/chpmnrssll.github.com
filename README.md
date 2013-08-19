@@ -1,4 +1,4 @@
 chpmnrssll.github.io
 =====================
 
-Experiment using Google Spreadsheets + Google Visulization API for cloud datastore for backbone.js client side CMS hosted using GitHub pages.
+Multiuser CMS experiment using OpenShift/PHP/MongoDB for cloud REST API and client app in backbone.js hosted from GitHub pages.
