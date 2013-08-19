@@ -1,4 +1,4 @@
-Slim PHP Mongo REST server
+Slim PHP MongoDB REST server
 ==========================
 
 MongoDB REST server using Slim PHP.
