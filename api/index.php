@@ -9,17 +9,10 @@ define('DB', 'api');
 
 $app = new Slim();
 
-// Routing
-$app->get('/:collection/', '_list');
-$app->post('/:collection/', '_create');
-$app->get('/:collection/:id', '_read');
-$app->put('/:collection/:id', '_update');
-$app->delete('/:collection/:id', '_delete');
-
 // @todo: add count collection command mongo/commands.php
 
 // List
-function _list($collection) {
+$app->get('/:collection/', function ($collection) use ($app) {
 	$select = array(
 		'limit'  => (isset($_GET['limit']))  ? $_GET['limit']  : false, 
 		'page'   => (isset($_GET['page']))   ? $_GET['page']   : false,
@@ -29,35 +22,48 @@ function _list($collection) {
 	);
 	
 	$data = mongoList(MONGO_HOST, DB, $collection, $select);
-	echo json_encode($data, JSON_PRETTY_PRINT);
-}
+	$app->response()->header('Content-Type', 'application/json');
+	$app->response()->body(json_encode($data));
+	$app->stop();
+});
 
 // Create
-function _create($collection) {
+$app->post('/:collection/', function ($collection) use ($app) {
 	$document = json_decode(Slim::getInstance()->request()->getBody(), true);
 	$data = mongoCreate(MONGO_HOST, DB, $collection, $document);
-	echo json_encode($data, JSON_PRETTY_PRINT);
-}
+	
+	$app->response()->header('Content-Type', 'application/json');
+	$app->response()->body(json_encode($data));
+	$app->stop();
+});
 
 // Read
-function _read($collection, $id) {
+$app->get('/:collection/:id', function ($collection, $id) use ($app) {
 	$data = mongoRead(MONGO_HOST, DB, $collection, $id);
-	echo json_encode($data, JSON_PRETTY_PRINT);
-}
+	
+	$app->response()->header('Content-Type', 'application/json');
+	$app->response()->body(json_encode($data));
+	$app->stop();
+});
 
 // Update
-function _update($collection, $id) {
+$app->put('/:collection/:id', function ($collection, $id) use ($app) {
 	$document = json_decode(Slim::getInstance()->request()->getBody(), true);
 	$data = mongoUpdate(MONGO_HOST, DB, $collection, $id, $document);
-	echo json_encode($data, JSON_PRETTY_PRINT);
-}
+	
+	$app->response()->header('Content-Type', 'application/json');
+	$app->response()->body(json_encode($data));
+	$app->stop();
+});
 
 // Delete
-function _delete($collection, $id) {
+$app->delete('/:collection/:id', function ($collection, $id) use ($app) {
 	$data = mongoDelete(MONGO_HOST, DB, $collection, $id);
-	echo json_encode($data, JSON_PRETTY_PRINT);
-}
+	
+	$app->response()->header('Content-Type', 'application/json');
+	$app->response()->body(json_encode($data));
+	$app->stop();
+});
 
 $app->run();
 ?>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

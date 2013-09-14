@@ -79,6 +79,7 @@ function mongoList($server, $db, $collection, $select = null) {
 			$cursor->skip($skip);
 		}
 		
+		/*
 		// prepare results to be returned
 		$output = array(
 			'total' => $cursor->count(),
@@ -90,6 +91,15 @@ function mongoList($server, $db, $collection, $select = null) {
 			// 'flattening' _id object in line with CRUD functions
 			$result['_id'] = $result['_id']->{'$id'};
 			$output['results'][] = $result;
+		}
+		*/
+		
+		$output = array();
+		$i = 0;
+		while($cursor->hasNext()) {
+			$output[$i] = $cursor->getNext();
+			// key() function returns the records '_id'
+			$output[$i++]['_id'] = $cursor->key();
 		}
 		
 		$conn->close();
