@@ -1,4 +1,4 @@
 chpmnrssll.github.io
 =====================
 
-Multiuser CMS experiment using OpenShift/PHP/MongoDB for cloud REST API and client app in backbone.js hosted from GitHub pages.
+Multiuser CMS experiment using PHP/MongoDB for cloud REST API hosted on OpenShift. Client app built using requireJS/backbone.js/marionette hosted on GitHub pages.

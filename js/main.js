@@ -1,3 +1,20 @@
+var apiUrl = 'http://localhost/chpmnrssll.github.io/api/';
+
+require.config({
+	paths: {
+		jquery: 'libs/jquery/jquery',
+		underscore: 'libs/underscore/underscore',
+		backbone: 'libs/backbone/backbone',
+		bootstrap: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min'
+	},
+	urlArgs: 'bust=' +  (new Date()).getTime(),
+});
+
+require([ 'jquery', 'underscore', 'backbone', 'bootstrap', 'router' ], function($, _, Backbone, Bootstrap, Router) {
+	Router.initialize();
+});
+
+/*
 $(document).ready(function() {
 	Backbone.View.prototype.close = function() {
 		this.remove();
@@ -144,4 +161,7 @@ $(document).ready(function() {
 		});
 	}
 	*/
+	/*
 });
+
+*/
