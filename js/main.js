@@ -1,17 +1,45 @@
 var apiUrl = 'http://localhost/chpmnrssll.github.io/api/';
 
 require.config({
+	urlArgs: 'bust=' +  (new Date()).getTime(),
 	paths: {
 		jquery: 'libs/jquery/jquery',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
-		bootstrap: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min'
+		backbone.wreqr: 'libs/backbone.marionette/backbone.wreqr',
+		backbone.eventbinder: 'libs/backbone.marionette/backbone.eventbinder',
+		backbone.babysitter: 'libs/backbone.marionette/backbone.babysitter',
+		marionette: 'libs/backbone.marionette/backbone.marionette',
 	},
-	urlArgs: 'bust=' +  (new Date()).getTime(),
+	shim: {
+		jquery: {
+			exports: '$'
+		},
+		underscore: {
+			exports: '_'
+		},
+		backbone: {
+			deps: ['jquery', 'underscore'],
+			exports: 'Backbone'
+		},
+		marionette: {
+			deps: ['jquery', 'underscore', 'backbone'],
+			exports: 'Marionette'
+		}
+	}
 });
 
-require([ 'jquery', 'underscore', 'backbone', 'bootstrap', 'router' ], function($, _, Backbone, Bootstrap, Router) {
-	Router.initialize();
+require([ 'jquery', 'underscore', 'backbone', 'marionette', 'router' ], function($, _, Backbone, Marionette, Router) {
+	App = new Marionette.Application();
+	App.addRegions({
+		mainRegion: "#content"
+	});
+	
+	App.addInitializer(function(options) {
+		Router.initialize();
+	});
+	
+	App.start();
 });
 
 /*
@@ -25,20 +53,6 @@ $(document).ready(function() {
 	}
 	
 	var serverUrl = "http://localhost/chpmnrssll.github.io/api/";	
-	
-	var User = Backbone.Model.extend({
-		defaults: {
-			name: "",
-			email: "",
-			password: ""
-			},
-		urlRoot: serverUrl + "users/"
-	});
-	
-	var Users = Backbone.Collection.extend({
-		model: User,
-		url: serverUrl + "users/"
-	});
 	
 	var UsersMainView = Backbone.View.extend({
 		template: _.template($('#users-main').html()),
@@ -133,7 +147,6 @@ $(document).ready(function() {
 		}
 	});
 	
-	/*
 	// Create & Read model test
 	var user = new User();
 	user.save({ name: "Russ", email: "russ@mail.com", password: "russ" }, {
@@ -160,8 +173,5 @@ $(document).ready(function() {
 			}
 		});
 	}
-	*/
-	/*
 });
-
 */

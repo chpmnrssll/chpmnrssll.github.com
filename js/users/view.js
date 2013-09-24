@@ -1,4 +1,10 @@
 define([ 'text!users/template.html' ], function(template) {
+	console.log('eh');
+	//console.log(Backbone.Marionette.ItemView.extend);
+	//return Backbone.Marionette.ItemView.extend({
+		//template: _.template(template)
+	//});
+	/*
 	return Backbone.View.extend({
 		template: _.template(template),
 		render: function() {
@@ -9,4 +15,5 @@ define([ 'text!users/template.html' ], function(template) {
 			return this;
 		}
 	});
+	*/
 });

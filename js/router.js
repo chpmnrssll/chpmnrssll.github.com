@@ -13,7 +13,7 @@ define([ 'users/view', 'home/view' ], function(UsersView, HomeView) {
 				},
 				users: function () {
 					var usersView = new UsersView();
-					usersView.render();
+					//usersView.render();
 				},
 				error: function () {
 					alert("Error");
