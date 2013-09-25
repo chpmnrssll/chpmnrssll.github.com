@@ -1,6 +1,6 @@
-define([ 'users/model' ], function(User) {
+define([ 'jquery', 'underscore', 'backbone', 'marionette', 'users/model' ], function($, _, Backbone, Marionette, Model) {
 	return Backbone.Collection.extend({
-		model: User,
-		url: apiUrl + "users/"
+		model: Model,
+		url: apiUrl + 'users/'
 	});
 });

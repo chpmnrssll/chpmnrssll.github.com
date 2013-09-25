@@ -1,9 +1,8 @@
-define([ 'text!users/template.html' ], function(template) {
-	console.log('eh');
-	//console.log(Backbone.Marionette.ItemView.extend);
-	//return Backbone.Marionette.ItemView.extend({
-		//template: _.template(template)
-	//});
+define([ 'jquery', 'underscore', 'backbone', 'marionette', 'text!users/template.html' ], function($, _, Backbone, Marionette, Template) {
+	console.log(Backbone);
+	return Backbone.Marionette.ItemView.extend({
+		template: _.template(Template)
+	});
 	/*
 	return Backbone.View.extend({
 		template: _.template(template),

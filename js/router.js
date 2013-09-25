@@ -1,4 +1,4 @@
-define([ 'users/view', 'home/view' ], function(UsersView, HomeView) {
+define([ 'jquery', 'underscore', 'backbone', 'marionette', 'users/view', 'home/view' ], function($, _, Backbone, Marionette, UsersView, HomeView) {
 	return {
 		initialize: function() {
 			var app_router = Backbone.Router.extend({
@@ -13,7 +13,6 @@ define([ 'users/view', 'home/view' ], function(UsersView, HomeView) {
 				},
 				users: function () {
 					var usersView = new UsersView();
-					//usersView.render();
 				},
 				error: function () {
 					alert("Error");

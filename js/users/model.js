@@ -1,10 +1,10 @@
-define([], function() {
+define([ 'jquery', 'underscore', 'backbone', 'marionette' ], function($, _, Backbone, Marionette) {
 	return Backbone.Model.extend({
 		defaults: {
-			name: "",
-			email: "",
-			password: ""
+			name: '',
+			email: '',
+			password: ''
 			},
-		urlRoot: apiUrl + "users/"
+		urlRoot: apiUrl + 'users/'
 	});
 });

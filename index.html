@@ -11,7 +11,14 @@
 		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		
-		<script data-main="js/main" src="js/libs/require/require.js"></script>
+		<script type="text/javascript">
+			var require = {
+				baseUrl: 'js/',
+				urlArgs: 'bust=' +  (new Date()).getTime(),
+				deps: ['main']
+			};
+		</script>
+		<script src="js/libs/require/require.js"></script>
 		<!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
 	</head>
 	<body>

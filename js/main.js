@@ -2,13 +2,14 @@ var apiUrl = 'http://localhost/chpmnrssll.github.io/api/';
 
 require.config({
 	urlArgs: 'bust=' +  (new Date()).getTime(),
+	baseUrl: 'js/',
 	paths: {
 		jquery: 'libs/jquery/jquery',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
-		backbone.wreqr: 'libs/backbone.marionette/backbone.wreqr',
-		backbone.eventbinder: 'libs/backbone.marionette/backbone.eventbinder',
-		backbone.babysitter: 'libs/backbone.marionette/backbone.babysitter',
+		'backbone.wreqr': 'libs/backbone.marionette/backbone.wreqr',
+		'backbone.eventbinder': 'libs/backbone.marionette/backbone.eventbinder',
+		'backbone.babysitter': 'libs/backbone.marionette/backbone.babysitter',
 		marionette: 'libs/backbone.marionette/backbone.marionette',
 	},
 	shim: {
