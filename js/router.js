@@ -1,25 +1,33 @@
-define([ 'jquery', 'underscore', 'backbone', 'marionette', 'users/view', 'home/view' ], function($, _, Backbone, Marionette, UsersView, HomeView) {
+define([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backbone, Marionette) {
 	return {
 		initialize: function() {
 			var app_router = Backbone.Router.extend({
 				routes: {
-					'': 'home',
-					'users': 'users',
-					'*actions': 'error'
+					"": "home",
+					"admin(/:tab)": "admin",
+					"*actions": "error"
 				},
 				home: function () {
-					var homeView = new HomeView();
-					homeView.render();
+					require([ "home/view" ], function (View) {
+						window.App.body.show(new View());
+					});
 				},
-				users: function () {
-					var usersView = new UsersView();
+				admin: function (tab) {
+					require([ "admin/header/view" ], function (View) {
+						window.App.header.show(new View());
+					});
+					
+					tab = (null === tab) ? "" : "/" + tab;
+					require([ "admin" + tab + "/view" ], function (View) {
+						window.App.content.show(new View());
+					});
 				},
 				error: function () {
-					alert("Error");
+					console.log("Route not found");
 				}
 			});
 			
-			new app_router();
+			window.App.router = new app_router();
 			Backbone.history.start();
 		}
 	}

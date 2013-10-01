@@ -1,12 +1,6 @@
-define([ 'text!home/template.html' ], function(homeTemplate) {
-	return Backbone.View.extend({
-		template: _.template(homeTemplate),
-		render: function() {
-			this.$el.html(this.template);
-			$("body").empty();
-			$("body").append(this.$el);
-			
-			return this;
-		}
+define([ "jquery", "underscore", "backbone", "marionette", "text!home/template.html" ], function($, _, Backbone, Marionette, Template) {
+	return Backbone.Marionette.ItemView.extend({
+		template: _.template(Template),
+		className: "container"
 	});
 });

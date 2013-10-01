@@ -1,46 +1,49 @@
-var apiUrl = 'http://localhost/chpmnrssll.github.io/api/';
+var apiUrl = "http://localhost/chpmnrssll.github.io/api/";
 
 require.config({
-	urlArgs: 'bust=' +  (new Date()).getTime(),
-	baseUrl: 'js/',
+	urlArgs: "bust=" +  (new Date()).getTime(),
+	baseUrl: "js/",
 	paths: {
-		jquery: 'libs/jquery/jquery',
-		underscore: 'libs/underscore/underscore',
-		backbone: 'libs/backbone/backbone',
-		'backbone.wreqr': 'libs/backbone.marionette/backbone.wreqr',
-		'backbone.eventbinder': 'libs/backbone.marionette/backbone.eventbinder',
-		'backbone.babysitter': 'libs/backbone.marionette/backbone.babysitter',
-		marionette: 'libs/backbone.marionette/backbone.marionette',
+		jquery: "libs/jquery/jquery",
+		underscore: "libs/underscore/underscore",
+		backbone: "libs/backbone/backbone",
+		"backbone.wreqr": "libs/backbone.marionette/backbone.wreqr",
+		"backbone.eventbinder": "libs/backbone.marionette/backbone.eventbinder",
+		"backbone.babysitter": "libs/backbone.marionette/backbone.babysitter",
+		marionette: "libs/backbone.marionette/backbone.marionette",
 	},
 	shim: {
 		jquery: {
-			exports: '$'
+			exports: "$"
 		},
 		underscore: {
-			exports: '_'
+			exports: "_"
 		},
 		backbone: {
-			deps: ['jquery', 'underscore'],
-			exports: 'Backbone'
+			deps: ["jquery", "underscore"],
+			exports: "Backbone"
 		},
 		marionette: {
-			deps: ['jquery', 'underscore', 'backbone'],
-			exports: 'Marionette'
+			deps: ["jquery", "underscore", "backbone"],
+			exports: "Marionette"
 		}
 	}
 });
 
-require([ 'jquery', 'underscore', 'backbone', 'marionette', 'router' ], function($, _, Backbone, Marionette, Router) {
-	App = new Marionette.Application();
-	App.addRegions({
-		mainRegion: "#content"
+require([ "jquery", "underscore", "backbone", "marionette", "router" ], function($, _, Backbone, Marionette, Router) {
+	window.App = new Marionette.Application();
+	window.App.addRegions({
+		body: "body",
+		header: "#header",
+		content: "#content",
+		footer: "#footer"
 	});
 	
-	App.addInitializer(function(options) {
+	window.App.addInitializer(function(options) {
 		Router.initialize();
 	});
 	
-	App.start();
+	window.App.start();
 });
 
 /*
@@ -56,7 +59,7 @@ $(document).ready(function() {
 	var serverUrl = "http://localhost/chpmnrssll.github.io/api/";	
 	
 	var UsersMainView = Backbone.View.extend({
-		template: _.template($('#users-main').html()),
+		template: _.template($("#users-main").html()),
 		render: function() {
 			this.$el.html(this.template);
 			$("body").append(this.$el);
@@ -65,7 +68,7 @@ $(document).ready(function() {
 	});
 	
 	var UserItemView = Backbone.View.extend({
-		template: _.template($('#user-item').html()),
+		template: _.template($("#user-item").html()),
 		tagName: "tr",
 		render: function() {
 			this.$el.html(this.template(this.model.toJSON()));
@@ -74,7 +77,7 @@ $(document).ready(function() {
 	});
 	
 	var UserListView = Backbone.View.extend({
-		template: _.template($('#user-list').html()),
+		template: _.template($("#user-list").html()),
 		render: function() {
 			this.$el.html(this.template);
 			_.each(this.collection.models, this.processUser, this);
@@ -86,7 +89,7 @@ $(document).ready(function() {
 	});
 	
 	var UserEditView = Backbone.View.extend({
-		template: _.template($('#user-edit').html()),
+		template: _.template($("#user-edit").html()),
 		render: function() {
 			if(this.model) {
 				this.$el.html(this.template(this.model.toJSON()));
