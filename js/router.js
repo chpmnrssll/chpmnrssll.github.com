@@ -9,16 +9,18 @@ define([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backb
 				},
 				home: function () {
 					require([ "home/view" ], function (View) {
-						window.App.body.show(new View());
+						window.App.header.close();
+						window.App.content.show(new View());
 					});
 				},
 				admin: function (tab) {
+					
 					require([ "admin/header/view" ], function (View) {
 						window.App.header.show(new View());
 					});
 					
-					tab = (null === tab) ? "" : "/" + tab;
-					require([ "admin" + tab + "/view" ], function (View) {
+					filename = (null === tab) ? "" : "/" + tab;
+					require([ "admin" + filename + "/view" ], function (View) {
 						window.App.content.show(new View());
 					});
 				},

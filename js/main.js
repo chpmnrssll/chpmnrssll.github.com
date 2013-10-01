@@ -4,13 +4,13 @@ require.config({
 	urlArgs: "bust=" +  (new Date()).getTime(),
 	baseUrl: "js/",
 	paths: {
-		jquery: "libs/jquery/jquery",
-		underscore: "libs/underscore/underscore",
-		backbone: "libs/backbone/backbone",
+		jquery: "libs/jquery/jquery.min",
+		underscore: "libs/underscore/underscore.min",
+		backbone: "libs/backbone/backbone.min",
 		"backbone.wreqr": "libs/backbone.marionette/backbone.wreqr",
 		"backbone.eventbinder": "libs/backbone.marionette/backbone.eventbinder",
 		"backbone.babysitter": "libs/backbone.marionette/backbone.babysitter",
-		marionette: "libs/backbone.marionette/backbone.marionette",
+		marionette: "libs/backbone.marionette/backbone.marionette.min",
 	},
 	shim: {
 		jquery: {
