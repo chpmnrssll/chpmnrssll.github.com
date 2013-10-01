@@ -8,3 +8,6 @@ Server is a simple REST API coded in PHP/Slim/MongoDB and hosted on OpenShift (c
 
 todo
 =====================
+
+secure register/login & views
+page & categories create/read (list)/update/delete views
