@@ -15,7 +15,7 @@ define([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backb
 				},
 				admin: function (tab) {
 					
-					require([ "admin/header/view" ], function (View) {
+					require([ "admin/nav/view" ], function (View) {
 						window.App.header.show(new View());
 					});
 					
