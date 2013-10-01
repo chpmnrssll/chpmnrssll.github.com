@@ -25,7 +25,7 @@ define([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backb
 					});
 				},
 				error: function () {
-					console.log("Route not found");
+					console.log("Route: " + Backbone.history.fragment + " not found");
 				}
 			});
 			
