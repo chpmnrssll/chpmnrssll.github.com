@@ -1,0 +1,124 @@
+<html>
+<head>
+	<title>youtube get_video_info test</title>
+</head>
+<body>
+	<h3>youtube get_video_info test</h3>
+	<div id="searchBox">
+		<form action="" method="get" id="params">
+			<label>Youtube video ID #</label>
+			<input id="videoID" class="search" type="text" />
+			<input class="submit" type="submit" value="Get Video" />
+			<!--
+<pre><small>1QTLmMSI1FQ  UWF7dZTLW4c  O_JGNLm16Ts  uVW81kp2HSo
+eV4AyIpnpcI  wOouUV1m5Wo  mrMxq8Yq4Pg  eWRtR3JRgpI
+UHHqnbWyXG8  oBDpZqczlxw  M4X25ax9VDk  YnsG8dtOnEA
+y0sl4fIxm4E  NG1S38s6btk  BallM-GfQqM  567Wspw-cmU
+eoqi1N9YwKE  dzLDQH1-nzg  ZhXsN5hqBNo  8vsVG20VUxQ
+CXhas4Ku9V0  HCYhRUV2Dbw  dOp-MDxOgIk  nAkRIHJOzik
+6t0YCU3A0wA  hFjOiAkN8ew  S7LpYFhb1JU  3rGyLWlAOIg
+hMfZigH7bEU
+</small></pre>
+			-->
+		</form>
+	</div>
+	<div id="ajaxBox">
+	</div>
+	<br>
+	<div id="videoBox">
+	</div>
+	<br/>
+	
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
+$(function(){
+	$('#params').submit(function() {
+		var id = this.videoID.value;
+		
+		if(id) {
+			var url = "http://www.youtube.com/get_video_info?video_id=" + id;
+			$.get(url, function(data) {
+				postLinks(data,id);
+			});
+		}
+		
+		// Prevent default form submit action.
+		return false;
+	});
+	
+	function postLinks(data,id){
+		var urls = new Array(); 
+		urls = getLinkArray(data);
+		
+		$("#ajaxBox").empty();
+		for(var x = 0; x < urls.length; x++) {
+			
+			//$("#ajaxBox").append(urls[x]+'<br/><br/>');
+			
+			if(x == 0) {
+				if(urls[0] === "status=fail") {
+					$("#ajaxBox").append(paramFromUrl(urls[urls.length-1],"reason").replace(/\+/g, " ")+'<br/>');
+					break;
+				} else {
+					$("#ajaxBox").append(paramFromUrl(urls[urls.length-1],"title").replace(/\+/g, " ")+'<br/>');
+				}
+			} else {
+				var itag = paramFromUrl(urls[x],"itag");		//fmt == itag
+				var type = paramFromUrl(urls[x],"type") || "undefined";
+				var quality = paramFromUrl(urls[x],"quality");
+				type = type.split(";")[0];
+				if((type === "video/mp4")||(type === "video/webm")) {
+					var tmp = encodeURI(urls[x].replace("sig", "signature"));
+					$("#ajaxBox").append('<a href="'+tmp+'">'+type+' ('+quality+')</a><br/>');
+				}
+			}
+		}
+		
+		addVideoJS();
+	}
+	
+	function addVideoJS() {
+		$('#ajaxBox a').click(function() {
+			var url = this.href;
+			var video = '<video id="video" autoplay preload controls loop src="'+url+'"></video>';
+			$("#video").remove();
+			$("#videoBox").prepend(video);
+			return false;
+		});
+	}
+
+	function paramFromUrl(url, param) {
+		var request = {};
+		var pairs = url.substring(url.indexOf('?') + 1).split('&');
+		for(var i = 0; i < pairs.length; i++) {
+			var pair = pairs[i].split('=');
+			request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+		}
+		return request[param];
+	}
+	
+	function getLinkArray(data){
+		var adata, urls, tmp, idx;
+		adata = decodeURIComponent(data);
+		adata = decodeURIComponent(adata);
+		adata = decodeURIComponent(adata);
+		adata = adata.replace("=itag=", ",itag=");
+		//tmp = adata.split("&allow_embed=");
+		//tmp = adata.split("&supported_without_ads=");
+		urls = adata.split(/,itag=\d{1,2}&url=/);
+		tmp = urls[urls.length-1];
+		urls[urls.length-1] = urls[urls.length-1].substr(0, urls[urls.length-1].search("&quality=")+18);
+		idx = urls[urls.length-1].lastIndexOf("&");
+		urls[urls.length-1] = urls[urls.length-1].substr(0, idx);
+		urls[urls.length] = "?" + tmp.substr(idx);
+		//urls = tmp[0].split(/,itag=\d{1,2}&url=/);
+		//urls[0] = "&allow_embed=" + tmp[tmp.length-1];
+		//urls[0] = "?supported_without_ads=" + tmp[tmp.length-1];
+		
+  		return urls;
+	}
+});
+</script>
+
+</body>
+</html>

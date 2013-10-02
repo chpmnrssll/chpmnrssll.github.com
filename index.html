@@ -9,7 +9,8 @@
 		
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/slate/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/YTPlayer.css">
 		
 		<script type="text/javascript">
 			var require = {
@@ -67,5 +68,23 @@
 			<td><a href="#users/delete/<%= _id %>"><i class="glyphicon glyphicon-remove delete-user"></i></a></td>
 		</script>
 		-->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.mb.YTPlayer.js"></script>
+		<script>
+			jQuery(function(){
+				jQuery(".player").mb_YTPlayer();
+			});
+		</script>
+		<a class="player" data-property="{videoURL:'HCYhRUV2Dbw',containment:'body',autoPlay:true, mute:true, startAt:0,opacity:1}">My video</a>
+<!--
+1QTLmMSI1FQ  UWF7dZTLW4c  O_JGNLm16Ts  uVW81kp2HSo
+eV4AyIpnpcI  wOouUV1m5Wo  mrMxq8Yq4Pg  eWRtR3JRgpI
+UHHqnbWyXG8  oBDpZqczlxw  M4X25ax9VDk  YnsG8dtOnEA
+y0sl4fIxm4E  NG1S38s6btk  BallM-GfQqM  567Wspw-cmU
+eoqi1N9YwKE  dzLDQH1-nzg  ZhXsN5hqBNo  8vsVG20VUxQ
+CXhas4Ku9V0  HCYhRUV2Dbw  nAkRIHJOzik
+6t0YCU3A0wA  hFjOiAkN8ew  S7LpYFhb1JU  3rGyLWlAOIg
+hMfZigH7bEU  qhHboVUc9f8
+-->
 	</body>
 </html>
