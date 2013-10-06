@@ -4,6 +4,7 @@ define([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backb
 			var app_router = Backbone.Router.extend({
 				routes: {
 					"": "home",
+					"admin/users": "users",
 					"admin(/:tab)": "admin",
 					"*actions": "error"
 				},
@@ -14,14 +15,28 @@ define([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backb
 					});
 				},
 				admin: function (tab) {
-					
-					require([ "admin/nav/view" ], function (View) {
-						window.App.header.show(new View());
+					require([ "admin/nav/view", "admin/nav/model"  ], function (View, Model) {
+						var m = new Model({ active: "admin" });
+						window.App.header.show(new View({ model: m }));
 					});
 					
 					filename = (null === tab) ? "" : "/" + tab;
 					require([ "admin" + filename + "/view" ], function (View) {
 						window.App.content.show(new View());
+					});
+				},
+				users: function () {
+					require([ "admin/nav/view", "admin/nav/model" ], function (View, Model) {
+						var m = new Model({ active: "users" });
+						window.App.header.show(new View({ model: m }));
+					});
+					
+					require([ "admin/users/collection", "admin/users/collectionView" ], function (Collection, View) {
+						new Collection().fetch({
+							success: function (collection, response, options) {
+								window.App.content.show(new View({ collection: collection }));
+							}
+						});
 					});
 				},
 				error: function () {

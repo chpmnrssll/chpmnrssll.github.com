@@ -44,6 +44,7 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 	});
 	
 	window.App.start();
+	//setTimeout(function () { window.App.start(); }, 3000);
 });
 
 /*

@@ -8,23 +8,21 @@
 		<meta name="description" content="chpmnrssll.github.com : Russell Chapman" />
 		
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/slate/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/YTPlayer.css">
-		
-		<script type="text/javascript">
-			var require = {
-				baseUrl: "js/",
-				urlArgs: "bust=" +  (new Date()).getTime(),
-				deps: ["main"]
-			};
-		</script>
-		<script src="js/libs/require/require.js"></script>
-		<!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
 	</head>
 	<body>
 		<div id="header"></div>
-		<div id="content"><b style="font-size:40px;color:#eee">Loading</b></div>
+		<div id="content">
+			<div class="row">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+					<strong><em class="text-center text-muted">Loading</em></strong>
+				</div>
+				<div class="col-md-4">
+				</div>
+			</div>
+		</div>
 		<div id="footer"></div>
 		<!--
 		<script type="text/template" id="user-edit">
@@ -68,35 +66,15 @@
 			<td><a href="#users/delete/<%= _id %>"><i class="glyphicon glyphicon-remove delete-user"></i></a></td>
 		</script>
 		-->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery.mb.YTPlayer.js"></script>
+		
 		<script>
-			jQuery(function(){
-				jQuery(".player").mb_YTPlayer();
-			});
+			var require = {
+				baseUrl: "js/",
+				//urlArgs: "bust=" +  (new Date()).getTime(),
+				deps: ["main"]
+			};
 		</script>
-		<a class="player" data-property="{videoURL:'ZhXsN5hqBNo',opacity:1,mute:true,showControls:false,containment:'body',optimizeDisplay:true,loop:true,startAt:0,showYTLogo:false}">Background Video</a>
-<!--
-space: 1QTLmMSI1FQ
-earth: eV4AyIpnpcI
-earth2: eWRtR3JRgpI
-clouds: 6t0YCU3A0wA
-snow: S7LpYFhb1JU
-underwater: NG1S38s6btk
-bubbles: oBDpZqczlxw
-bluelights: y0sl4fIxm4E
-vector: uVW81kp2HSo
-fireflies: UWF7dZTLW4c
-magiclight: wOouUV1m5Wo
-firestorm: mrMxq8Yq4Pg
-smokey: O_JGNLm16Ts
-cellular: M4X25ax9VDk
-microscope: ZhXsN5hqBNo
-bloodcells: 567Wspw-cmU
-aliendna: eoqi1N9YwKE
-viral: 8vsVG20VUxQ
-clockwork: HCYhRUV2Dbw
-fireplace: dzLDQH1-nzg
--->
+		<script src="js/libs/require/require.js"></script>
+		<!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
 	</body>
 </html>
