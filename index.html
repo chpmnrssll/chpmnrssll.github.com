@@ -97,7 +97,7 @@
 	//Precalc 256 color palette r,g,b values
 	for(var i = 0; i < 256; i++) {
 		palette[i] = {}
-        var shade = 255 - ((i/2) * (Math.sin(i/40)));
+        var shade = 255 - ((i) * (Math.sin(i/40)));
 		palette[i].r = shade;
 		palette[i].g = shade*1.1;
         palette[i].b = shade*1.2;
