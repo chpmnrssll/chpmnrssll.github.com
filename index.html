@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
+		<canvas id="canvasBackground" width="320" height="240"></canvas>
 		<div id="header"></div>
 		<div id="content">
 			<div class="row">
@@ -76,5 +77,60 @@
 		</script>
 		<script src="js/libs/require/require.js"></script>
 		<!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
+		<script>
+			(function () {
+    const FPS = 30;
+    
+	//Get context, precalc some variables, and create screen buffer
+	var canvas = document.getElementById('canvas');
+	var context2D = canvas.getContext('2d');
+	var width = canvas.width;
+	var height = canvas.height;
+	var bufferSize = width*height;
+	var buffer = context2D.createImageData(width, height);
+    var yIndex = {}, palette = {}, sinc = {}, tmp = 0;
+	
+	//Precalc y*width values for each horizontal line
+	for(var y = 0; y < height; y++)
+		yIndex[y] = y*width;
+	
+	//Precalc 256 color palette r,g,b values
+	for(var i = 0; i < 256; i++) {
+		palette[i] = {}
+        var shade = 255-((i/2)*(Math.sin(i/40)));
+		palette[i].r = shade;
+		palette[i].g = shade;
+        palette[i].b = shade;
+	}
+	
+	//Precalc Math.sin table
+	for(var i = 0; i < 1800; i++) {
+		sinc[i] = (Math.sin((3.1416*i)/180)*1024);
+	}
+	
+	setInterval(function () {
+	    var index, color, xc, yc;
+	    tmp = (tmp + 1) % 720;
+	    
+	    //Main loop with optimized magic plasma color formula
+	    for(y = 0; y < height; y++) {
+            yc = ((sinc[(y << 1)+(tmp >> 1)] + sinc[y+(tmp << 1)] + (sinc[(y >> 1)+tmp] << 1)) >> 6);
+            for(x = 0; x < width; x++) {
+                xc = yc + (((sinc[x+(tmp << 1)] << 1) + sinc[(x << 1)+(tmp >> 1)] + (sinc[x+tmp] << 1)) >> 6);
+			    
+			    index = (yIndex[y] + x) << 2;			//current pixel
+			    color = Math.abs(((yc*xc) >> 5) % 255);	//current color
+			    buffer.data[index++] = palette[color].r;
+			    buffer.data[index++] = palette[color].g;
+			    buffer.data[index++] = palette[color].b;
+			    buffer.data[index++] = 255;
+		    }
+	    }
+	    
+	    //Flip buffer to canvas
+	    context2D.putImageData(buffer, 0,0);
+    }, 1000/FPS);
+})();
+		</script>
 	</body>
 </html>
