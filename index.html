@@ -78,8 +78,8 @@
 		<script src="js/libs/require/require.js"></script>
 		<!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
 		<script>
-			(function () {
-    const FPS = 30;
+(function () {
+    const FPS = 60;
     
 	//Get context, precalc some variables, and create screen buffer
 	var canvas = document.getElementById('canvasBackground');
@@ -97,10 +97,10 @@
 	//Precalc 256 color palette r,g,b values
 	for(var i = 0; i < 256; i++) {
 		palette[i] = {}
-        var shade = 255-((i/2)*(Math.sin(i/40)));
+        var shade = 255 - (i * (Math.sin(i/40)));
 		palette[i].r = shade;
-		palette[i].g = shade;
-        palette[i].b = shade;
+		palette[i].g = shade*1.1;
+        palette[i].b = shade*1.2;
 	}
 	
 	//Precalc Math.sin table
@@ -114,9 +114,9 @@
 	    
 	    //Main loop with optimized magic plasma color formula
 	    for(y = 0; y < height; y++) {
-            yc = ((sinc[(y << 1)+(tmp >> 1)] + sinc[y+(tmp << 1)] + (sinc[(y >> 1)+tmp] << 1)) >> 6);
+            yc = ((sinc[y+(tmp >> 1)] + sinc[y+(tmp << 1)] + (sinc[tmp+(y >> 1)])) >> 6);
             for(x = 0; x < width; x++) {
-                xc = yc + (((sinc[x+(tmp << 1)] << 1) + sinc[(x << 1)+(tmp >> 1)] + (sinc[x+tmp] << 1)) >> 6);
+            xc = y+((sinc[x+(tmp >> 1)] + sinc[x+(tmp << 1)] + (sinc[tmp+(x >> 1)])) >> 6);
 			    
 			    index = (yIndex[y] + x) << 2;			//current pixel
 			    color = Math.abs(((yc*xc) >> 5) % 255);	//current color
