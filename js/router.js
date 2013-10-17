@@ -5,23 +5,13 @@ define([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backb
 				routes: {
 					"": "home",
 					"admin/users": "users",
+					"admin/categories": "categories",
 					"admin(/:tab)": "admin",
 					"*actions": "error"
 				},
 				home: function () {
 					require([ "home/view" ], function (View) {
 						window.App.header.close();
-						window.App.content.show(new View());
-					});
-				},
-				admin: function (tab) {
-					require([ "admin/nav/view", "admin/nav/model"  ], function (View, Model) {
-						var m = new Model({ active: "admin" });
-						window.App.header.show(new View({ model: m }));
-					});
-					
-					filename = (null === tab) ? "" : "/" + tab;
-					require([ "admin" + filename + "/view" ], function (View) {
 						window.App.content.show(new View());
 					});
 				},
@@ -37,6 +27,31 @@ define([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backb
 								window.App.content.show(new View({ collection: collection }));
 							}
 						});
+					});
+				},
+				categories: function () {
+					require([ "admin/nav/view", "admin/nav/model" ], function (View, Model) {
+						var m = new Model({ active: "categories" });
+						window.App.header.show(new View({ model: m }));
+					});
+					
+					require([ "admin/categories/collection", "admin/categories/collectionView" ], function (Collection, View) {
+						new Collection().fetch({
+							success: function (collection, response, options) {
+								window.App.content.show(new View({ collection: collection }));
+							}
+						});
+					});
+				},
+				admin: function (tab) {
+					require([ "admin/nav/view", "admin/nav/model"  ], function (View, Model) {
+						var m = new Model({ active: "admin" });
+						window.App.header.show(new View({ model: m }));
+					});
+					alert(tab);
+					filename = (null === tab) ? "" : "/" + tab;
+					require([ "admin" + filename + "/view" ], function (View) {
+						window.App.content.show(new View());
 					});
 				},
 				error: function () {

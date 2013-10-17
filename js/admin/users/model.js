@@ -2,8 +2,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 	return Backbone.Model.extend({
 		defaults: {
 			name: "",
-			email: "",
-			password: ""
+			email: ""
 			},
 		urlRoot: apiUrl + "users/"
 	});
