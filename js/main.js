@@ -40,7 +40,8 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 	});
 	
 	window.App.addInitializer(function(options) {
-		Router.initialize();
+		window.app.Router = new Router();
+		//appRouter.initialize();
 	});
 	
 	window.App.start();
