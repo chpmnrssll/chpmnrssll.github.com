@@ -34,7 +34,8 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 	window.App = new Marionette.Application();
 	
 	window.App.addInitializer(function(options) {
-		window.App.apiUrl = "http://localhost/chpmnrssll.github.io/api/";
+		//window.App.apiUrl = "http://localhost/chpmnrssll.github.io/api/";
+		window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";
 		window.App.router = new Router();
 		window.App.addRegions({
 			body: "body",
