@@ -1,5 +1,5 @@
 define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], function($, _, Backbone, Marionette, AdminRouter) {
-	var AppRouter = Backbone.Router.extend({
+	return Backbone.Router.extend({
 		routes: {
 			"": "home",
 			"*actions": "error"
@@ -8,7 +8,13 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], fun
 			this._subRouters = {
 				admin: new AdminRouter()
 			}
-			Backbone.history.start();
+			
+			//seems hacky, must wait until all subRouters loaded before calling Backbone.history.start
+			window.App.vent.on("loaded", function() {
+				if (Backbone.history) {
+					Backbone.history.start();
+				}
+			});
 		},
 		home: function () {
 			require([ "home/view" ], function (View) {
@@ -20,6 +26,4 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], fun
 			console.log("Route: " + Backbone.history.fragment + " not found");
 		}
 	});
-	
-	return AppRouter;
 });

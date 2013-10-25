@@ -1,4 +1,4 @@
-var apiUrl = "http://localhost/chpmnrssll.github.io/api/";
+//var apiUrl = "http://localhost/chpmnrssll.github.io/api/";
 
 require.config({
 	urlArgs: "bust=" +  (new Date()).getTime(),
@@ -32,16 +32,16 @@ require.config({
 
 require([ "jquery", "underscore", "backbone", "marionette", "router" ], function($, _, Backbone, Marionette, Router) {
 	window.App = new Marionette.Application();
-	window.App.addRegions({
-		body: "body",
-		header: "#header",
-		content: "#content",
-		footer: "#footer"
-	});
 	
 	window.App.addInitializer(function(options) {
-		window.app.Router = new Router();
-		//appRouter.initialize();
+		window.App.apiUrl = "http://localhost/chpmnrssll.github.io/api/";
+		window.App.router = new Router();
+		window.App.addRegions({
+			body: "body",
+			header: "#header",
+			content: "#content",
+			footer: "#footer"
+		});
 	});
 	
 	window.App.start();
@@ -50,46 +50,7 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 
 /*
 $(document).ready(function() {
-	Backbone.View.prototype.close = function() {
-		this.remove();
-		this.unbind();
-		if(this.onClose) {
-			this.onClose();
-		}
-	}
-	
-	var serverUrl = "http://localhost/chpmnrssll.github.io/api/";	
-	
-	var UsersMainView = Backbone.View.extend({
-		template: _.template($("#users-main").html()),
-		render: function() {
-			this.$el.html(this.template);
-			$("body").append(this.$el);
-			return this;
-		},
-	});
-	
-	var UserItemView = Backbone.View.extend({
-		template: _.template($("#user-item").html()),
-		tagName: "tr",
-		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
-			return this;
-		}
-	});
-	
-	var UserListView = Backbone.View.extend({
-		template: _.template($("#user-list").html()),
-		render: function() {
-			this.$el.html(this.template);
-			_.each(this.collection.models, this.processUser, this);
-			return this;
-		},
-		processUser: function(user) {
-			this.$("#user-items").append(new UserItemView({ model: user }).render().$el);
-		}
-	});
-	
+
 	var UserEditView = Backbone.View.extend({
 		template: _.template($("#user-edit").html()),
 		render: function() {

@@ -1,8 +1,11 @@
 define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Backbone, Marionette) {
 	return Backbone.Model.extend({
 		defaults: {
+			category: "",
+			title: "",
+			date: "",
 			content: ""
-			},
-		urlRoot: apiUrl + "pages/"
+		},
+		urlRoot: window.App.apiUrl + "pages/"
 	});
 });

@@ -2,7 +2,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 	return Backbone.Model.extend({
 		defaults: {
 			name: ""
-			},
-		urlRoot: apiUrl + "categories/"
+		},
+		urlRoot: window.App.apiUrl + "categories/"
 	});
 });

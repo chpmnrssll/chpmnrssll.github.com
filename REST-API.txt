@@ -1,0 +1,36 @@
+Overview
+I'm looking to create a (REST) API for my application. The initial/primary purpose will be for consumption by mobile apps (iPhone, Android, Symbian, etc). I've been looking into different mechanisms for authentication and authorization for web-based APIs (by studying other implementations). I've got my head wrapped around most of the fundamental concepts but am still looking for guidance in a few areas. The last thing I want to do is reinvent the wheel, but I'm not finding any standard solutions that fits my criteria (however my criteria my be misguided so feel free to critique that as well). Additionally, I want the API to be the same for all platforms/applications consuming it.
+
+oAuth
+
+I'll go ahead and throw out my objection to oAuth since I know that will likely be the first solution offered. For mobile applications (or more specifically non-web applications), it just seems wrong to leave the application (to go to a web-browser) for the authentication. Additionally, there is no way (I am aware of) for the browser to return the callback to the application (especially cross-platform). I know a couple of apps that do that, but it just feels wrong and gives a break in the application UX.
+
+Requirements
+
+User enters username/password into application.
+Every API call is identified by the calling application.
+Overhead is kept to a minimum and the auth aspect is intuitive for developers.
+The mechanism is secure for both the end user (their login credentials are not exposed) as well as the developer (their application credentials are not exposed).
+If possible, not require https (by no means a hard requirement).
+My Current Thoughts on Implementation
+
+An external developer will request an API account. They will receive an userID and privateKey. Every request will require at minimum three parameters.
+
+userID - given to developer at regisration
+timestamp - doubles as a unique identifier for each message for a given userID
+hash - a hash of the timestamp + the privateKey
+The userID is required to identify the application issuing the request. The timestamp acts similarly to the oauth_nonce and avoids/mitigates replay attacks. The hash ensures that request was actually issued from the owner of the given userID.
+
+For authenticated requests (ones done on the behalf of a user), I'm still undecided between going with an access_token route or a username and password hash combo. Either way, at some point a username/password combo will be required. So when it does, a hash of several pieces of information (userID, privateKey, timestamp) + the password would be used. I'd love feedback on this aspect. FYI, they would have to hash the password first, since I don't store the passwords in my system without hashing.
+
+Conclusion
+
+FYI, this isn't a request for how to build/structure the API in general only how to handle the authentication and authorization from solely within an application.
+
+Random Thoughts/Bonus Questions
+
+For APIs that only require an userID as part of the request, how do you prevent someone other than the userID owner from being able to see the userID (since sent in the clear) and make excessive requests to push them over usage limits? Maybe I'm just over thinking this, but shouldn't there be something to authenticate that a request was verified to the userID owner? In my case, that was the purpose of the privateKey, it is never shown/transmitted without being hashed.
+
+Speaking of hashes, what about md5 vs hmac-sha1? Does it really matter when all of the values are hashed with with sufficiently long data (ie. privateKey)?
+
+I had been previously considering adding a per user/row salt to my users password hash. If I were to do that, how could the application be able to create a matching hash without knowing the salt used?
