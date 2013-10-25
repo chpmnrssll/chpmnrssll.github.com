@@ -10,6 +10,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 			"admin/pages": "pages"
 		},
 		initialize: function () {
+			console.log("router.initialize");
 			require([ "admin/nav/model", "admin/nav/view" ], function (Model, View) {
 				window.App.users = {};
 				window.App.adminNav = {};
