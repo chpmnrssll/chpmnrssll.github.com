@@ -22,7 +22,8 @@ $app->get('/:collection/', function ($collection) use ($app) {
 	);
 	
 	$data = mongoList(MONGO_HOST, DB, $collection, $select);
-	$app->response()->header('Content-Type', 'application/json');
+	$app->response()->headers->set('Content-Type', 'application/json');
+	$app->response()->headers->set('Access-Control-Allow-Origin', '*');
 	$app->response()->body(json_encode($data));
 	$app->stop();
 });
