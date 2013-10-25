@@ -1,5 +1,3 @@
-//var apiUrl = "http://localhost/chpmnrssll.github.io/api/";
-
 require.config({
 	urlArgs: "bust=" +  (new Date()).getTime(),
 	baseUrl: "js/",
@@ -51,64 +49,7 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 
 /*
 $(document).ready(function() {
-
-	var UserEditView = Backbone.View.extend({
-		template: _.template($("#user-edit").html()),
-		render: function() {
-			if(this.model) {
-				this.$el.html(this.template(this.model.toJSON()));
-			} else {
-				this.$el.html(this.template());
-			}
-			return this;
-		}
-	});
-	
-	var AppRouter = Backbone.Router.extend({
-		routes: {
-			"": "home",
-			"users": "list",
-			"users/create": "create",
-			"users/edit/:id": "edit",
-			"users/delete/:id": "delete"
-		},
-		initialize: function() {
-			this.views = {};
-		},
-		showView: function(view) {
-			if(this.views.current) {
-				this.views.current.close();
-			}
-			this.views.current = view;
-			this.views.current.render();
-		},
-		home: function() {
-			$("body").append("<a href=\"#users\">users</a>");
-		},
-		list: function() {
-			this.showView(new UsersMainView());
-			new UserListView({ collection: this.users, el: $("#users-content") }).render();
-		},
-		create: function() {
-			new UsersMainView().render();
-			new UserEditView({ el: $("#users-content") }).render();
-		},
-		edit: function (id) {
-			new UsersMainView().render();
-			new UserEditView({ el: $("#users-content") }).render();
-		},
-		delete: function (id) {
-			if(confirm("Delete User?")) {
-				var model = this.users.findWhere({ _id: id });
-				model.set("id", model.get("_id"));	//stupid backbone.js!!!
-				model.destroy();
-			}
-		}
-	});
-	
-	var app_router = new AppRouter();
-	Backbone.history.start({ root: "chpmnrssll.github.io" });
-	
+		
 	new Users().fetch({
 		success: function (collection, response, options) {
 			app_router.users = collection;
