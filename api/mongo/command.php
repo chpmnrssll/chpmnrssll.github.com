@@ -6,7 +6,7 @@
  
 function mongoCollectionCount($server, $db, $collection, $query = null) {
 	try {
-		$conn = new Mongo($server);
+		$conn = new MongoClient($server);
 		$_db = $conn->{$db};
 		$collection = $_db->{$collection};
 		

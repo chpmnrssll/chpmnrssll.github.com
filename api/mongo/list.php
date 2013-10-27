@@ -23,7 +23,7 @@ define('MONGO_LIST_MAX_PAGE_SIZE', false); // set to a number to enforce a max p
 
 function mongoList($server, $db, $collection, $select = null) {
 	try {
-		$conn = new Mongo($server);
+		$conn = new MongoClient($server);
 		$_db = $conn->{$db};
 		$collection = $_db->{$collection};
 		

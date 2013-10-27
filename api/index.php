@@ -4,12 +4,27 @@ require 'mongo/crud.php';
 require 'mongo/list.php';
 require 'mongo/command.php';
 
-define('MONGO_HOST', 'localhost');
-define('DB', 'api');
+define('MONGO_HOST', $_ENV['OPENSHIFT_MONGODB_DB_URL']);	//'localhost'
+define('DB', 'chpmn');	//api
 
 $app = new Slim();
+$app->response()->header('Content-Type', 'application/json');
+$app->response()->header('Access-Control-Allow-Origin', '*');
 
 // @todo: add count collection command mongo/commands.php
+
+$app->get('/', function () use ($app) {
+	$app->response()->body('GET /');
+	$app->stop();
+});
+
+// CORS Preflight response
+$app->options('/.*?', function () use ($app) {
+	$app->response()->header('Access-Control-Allow-Origin', '*');
+	$app->response()->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+	$app->response()->header('Access-Control-Allow-Headers', 'X-Requested-With, X-authentication, X-client, Content-Type');
+	$app->stop();
+});
 
 // List
 $app->get('/:collection/', function ($collection) use ($app) {
@@ -22,8 +37,6 @@ $app->get('/:collection/', function ($collection) use ($app) {
 	);
 	
 	$data = mongoList(MONGO_HOST, DB, $collection, $select);
-	$app->response()->headers->set('Content-Type', 'application/json');
-	$app->response()->headers->set('Access-Control-Allow-Origin', '*');
 	$app->response()->body(json_encode($data));
 	$app->stop();
 });
@@ -32,8 +45,6 @@ $app->get('/:collection/', function ($collection) use ($app) {
 $app->post('/:collection/', function ($collection) use ($app) {
 	$document = json_decode(Slim::getInstance()->request()->getBody(), true);
 	$data = mongoCreate(MONGO_HOST, DB, $collection, $document);
-	
-	$app->response()->header('Content-Type', 'application/json');
 	$app->response()->body(json_encode($data));
 	$app->stop();
 });
@@ -41,8 +52,6 @@ $app->post('/:collection/', function ($collection) use ($app) {
 // Read
 $app->get('/:collection/:id', function ($collection, $id) use ($app) {
 	$data = mongoRead(MONGO_HOST, DB, $collection, $id);
-	
-	$app->response()->header('Content-Type', 'application/json');
 	$app->response()->body(json_encode($data));
 	$app->stop();
 });
@@ -51,8 +60,6 @@ $app->get('/:collection/:id', function ($collection, $id) use ($app) {
 $app->put('/:collection/:id', function ($collection, $id) use ($app) {
 	$document = json_decode(Slim::getInstance()->request()->getBody(), true);
 	$data = mongoUpdate(MONGO_HOST, DB, $collection, $id, $document);
-	
-	$app->response()->header('Content-Type', 'application/json');
 	$app->response()->body(json_encode($data));
 	$app->stop();
 });
@@ -60,8 +67,6 @@ $app->put('/:collection/:id', function ($collection, $id) use ($app) {
 // Delete
 $app->delete('/:collection/:id', function ($collection, $id) use ($app) {
 	$data = mongoDelete(MONGO_HOST, DB, $collection, $id);
-	
-	$app->response()->header('Content-Type', 'application/json');
 	$app->response()->body(json_encode($data));
 	$app->stop();
 });

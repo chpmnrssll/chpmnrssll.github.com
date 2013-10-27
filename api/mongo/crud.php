@@ -10,7 +10,7 @@
 // Create (insert)
 function mongoCreate($server, $db, $collection, $document) {
 	try {
-		$conn = new Mongo($server);
+		$conn = new MongoClient($server);
 		$_db = $conn->{$db};
 		$collection = $_db->{$collection};
 		$collection->insert($document);
@@ -29,7 +29,7 @@ function mongoCreate($server, $db, $collection, $document) {
 // Read (findOne)
 function mongoRead($server, $db, $collection, $id) {
 	try {
-		$conn = new Mongo($server);
+		$conn = new MongoClient($server);
 		$_db = $conn->{$db};
 		$collection = $_db->{$collection};
 		
@@ -53,7 +53,7 @@ function mongoRead($server, $db, $collection, $id) {
 // Update (set properties)
 function mongoUpdate($server, $db, $collection, $id, $document) {
 	try {
-		$conn = new Mongo($server);
+		$conn = new MongoClient($server);
 		$_db = $conn->{$db};
 		$collection = $_db->{$collection};
 		
@@ -80,7 +80,7 @@ function mongoUpdate($server, $db, $collection, $id, $document) {
 // Delete (remove)
 function mongoDelete($server, $db, $collection, $id) {
 	try {
-		$conn = new Mongo($server);
+		$conn = new MongoClient($server);
 		$_db = $conn->{$db};
 		$collection = $_db->{$collection};
 		
