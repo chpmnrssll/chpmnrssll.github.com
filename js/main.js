@@ -32,8 +32,7 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 	window.App = new Marionette.Application();
 	
 	window.App.addInitializer(function(options) {
-		//window.App.apiUrl = "http://localhost/chpmnrssll.github.io/api/";
-		window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";
+		window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";	//"http://localhost/chpmnrssll.github.io/api/"
 		window.App.router = new Router();
 		window.App.addRegions({
 			body: "body",
@@ -43,44 +42,12 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 		});
 	});
 	
+	window.App.on("initialize:after", function(options) {
+		if (Backbone.history) {
+			Backbone.history.start();
+		}
+	});
+
 	window.App.start();
 	//setTimeout(function () { window.App.start(); }, 3000);
 });
-
-/*
-$(document).ready(function() {
-		
-	new Users().fetch({
-		success: function (collection, response, options) {
-			app_router.users = collection;
-		}
-	});
-	
-	// Create & Read model test
-	var user = new User();
-	user.save({ name: "Russ", email: "russ@mail.com", password: "russ" }, {
-		success: function (model, response, options) {
-			console.log(response);
-			getModel();
-		},
-		error: function (model, response, options) {
-			console.log(response);
-			alert("error");
-		}
-	});
-	
-	function getModel() {
-		var newUser = new User({ id: user.get("_id") });
-		newUser.fetch({
-			success: function (model, response, options) {
-				console.log(response);
-				alert(JSON.stringify(model));
-			},
-			error: function (model, response, options) {
-				console.log(response);
-				alert("error");
-			}
-		});
-	}
-});
-*/

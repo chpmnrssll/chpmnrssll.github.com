@@ -8,13 +8,6 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], fun
 			this._subRouters = {
 				admin: new AdminRouter()
 			}
-			
-			//seems hacky, must wait until all subRouters loaded before calling Backbone.history.start
-			window.App.vent.on("loaded", function() {
-				if (Backbone.history) {
-					Backbone.history.start();
-				}
-			});
 		},
 		home: function () {
 			require([ "home/view" ], function (View) {

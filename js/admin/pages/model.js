@@ -6,6 +6,11 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 			date: "",
 			content: ""
 		},
-		urlRoot: window.App.apiUrl + "pages/"
+		urlRoot: window.App.apiUrl + "pages/",
+		parse: function (response, options) {
+			response.id = response._id;		//stupid backbone.js->mongoDB id confusion!!!
+			delete response._id;
+			return response;
+		}
 	});
 });
