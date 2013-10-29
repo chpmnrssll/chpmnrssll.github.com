@@ -10,9 +10,10 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], fun
 			}
 		},
 		home: function () {
-			require([ "home/view" ], function (View) {
+			require([ "home/view" ], function (HomeView) {
 				window.App.header.close();
-				window.App.content.show(new View());
+				window.App.content.show(new HomeView());
+				window.App.footer.show(window.App.views.AuthView);
 			});
 		},
 		error: function () {
