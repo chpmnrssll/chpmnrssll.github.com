@@ -32,27 +32,26 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 	
 	window.App.addInitializer(function(options) {
 		window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";	//"http://localhost/api/";
-		window.App.router = new Router();
-		window.App.models = {};
-		window.App.views = {};
 		window.App.addRegions({
 			body: "body",
+			auth: "#auth",
 			header: "#header",
 			content: "#content",
 			footer: "#footer"
 		});
-	});
-	
-	window.App.on("initialize:after", function(options) {
+		window.App.router = new Router();
+		window.App.models = {};
+		window.App.views = {};
+		
 		require([ "auth/model", "auth/view" ], function (AuthModel, AuthView) {
 			window.App.models.AuthModel = new AuthModel();
 			window.App.views.AuthView = new AuthView({ model: window.App.models.AuthModel });
-			//window.App.header.show(window.App.views.AuthView);
+			window.App.auth.show(window.App.views.AuthView);
+			
+			if (Backbone.history) {
+				Backbone.history.start();
+			}
 		});
-		
-		if (Backbone.history) {
-			Backbone.history.start();
-		}
 	});
 
 	window.App.start();

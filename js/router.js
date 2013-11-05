@@ -13,7 +13,6 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], fun
 			require([ "home/view" ], function (HomeView) {
 				window.App.header.close();
 				window.App.content.show(new HomeView());
-				window.App.footer.show(window.App.views.AuthView);
 			});
 		},
 		error: function () {

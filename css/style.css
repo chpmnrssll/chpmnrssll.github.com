@@ -4,3 +4,8 @@
   position: absolute;
   z-index: -2;
 }
+
+.auth {
+	border: 1px solid #888;
+	width: 40%;
+}
