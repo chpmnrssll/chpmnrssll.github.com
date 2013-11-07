@@ -9,7 +9,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/users/router",
 				categories: new CategoriesRouter(),
 				pages: new PagesRouter()
 			}
-			this._subRouters.pages.initialize();
+			
 			require([ "admin/nav/model", "admin/nav/view" ], function (Model, View) {
 				window.App.adminNav = {};
 				window.App.adminNav.model = new Model();
