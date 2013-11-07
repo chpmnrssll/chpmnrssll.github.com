@@ -8,44 +8,44 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		},
 		initialize: function () {
 			window.App.users = {};
-		},
-		users: function () {
-			require([ "admin/users/collection", "admin/users/collectionView" ], function (Collection, View) {
-				window.App.adminNav.model.set({ active: "users" });
-				window.App.header.show(window.App.adminNav.view);
+			
+			require([ "admin/users/collection" ], function (Collection) {
 				new Collection().fetch({
 					success: function (collection, response, options) {
 						window.App.users.collection = collection;
-						window.App.content.show(new View({ collection: collection }));
 					}
 				});
+			});
+		},
+		users: function () {
+			require([ "admin/users/collectionView" ], function (View) {
+				window.App.adminNav.model.set({ active: "users" });
+				window.App.header.show(window.App.adminNav.view);
+				window.App.content.show(new View({ collection: window.App.users.collection }));
 			});
 		},
 		createUser: function () {
-			require([ "admin/users/model" ], function (Model) {
+			require([ "admin/users/model", "admin/users/updateView" ], function (Model, View) {
 				window.App.adminNav.model.set({ active: "users" });
 				window.App.header.show(window.App.adminNav.view);
+				
 				var user = new Model();
-				user.save({ name: prompt("Name:", ""), email: prompt("Email:", "") }, {
-					success: function (model, response, options) {
-						window.App.router.navigate("admin/users", { trigger: true });
-					}
-				});
+				window.App.users.collection.add(user);
+				window.App.content.show(new View({ model: user }));
 			});
 		},
 		updateUser: function (id) {
-			window.App.adminNav.model.set({ active: "users" });
-			window.App.header.show(window.App.adminNav.view);
-			var user = window.App.users.collection.findWhere({ id: id });
-			user.save({ name: prompt("Name:", user.get("name")), email: prompt("Email:", user.get("email")) }, {
-				success: function (model, response, options) {
-					window.App.router.navigate("admin/users", { trigger: true });
-				}
+			require([ "admin/users/updateView" ], function (View) {
+				window.App.adminNav.model.set({ active: "users" });
+				window.App.header.show(window.App.adminNav.view);
+				
+				var user = window.App.users.collection.findWhere({ id: id });
+				window.App.content.show(new View({ model: user }));
 			});
 		},
 		deleteUser: function (id) {
-			var model = window.App.users.collection.findWhere({ id: id });
 			if(confirm("Delete User?")) {
+				var model = window.App.users.collection.findWhere({ id: id });
 				model.destroy({
 					success: function (model, response, options) {
 						window.App.router.navigate("admin/users", { trigger: true });

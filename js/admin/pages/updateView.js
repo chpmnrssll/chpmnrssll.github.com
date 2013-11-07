@@ -16,7 +16,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!admin/pages/upd
 				});
 			},
 			"click #pageCancel": function (event) {
-				window.App.router.navigate("#admin/pages", { trigger: true });
+				window.App.router.navigate("admin/pages", { trigger: true });
 			}
 		}
 	});

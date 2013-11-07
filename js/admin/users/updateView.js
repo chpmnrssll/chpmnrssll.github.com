@@ -3,16 +3,17 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!admin/categorie
 		template: _.template(Template),
 		className: "container",
 		events: {
-			"click #categorySave": function (event) {
+			"click #userSave": function (event) {
 				this.model.save({
-					name: $("#categoryName").val(),
+					name: $("#userName").val(),
+					email: $("userEmail").val()
 				}, {
 					success: function (model, response, options) {
 						window.App.router.navigate("admin/categories", { trigger: true });
 					}
 				});
 			},
-			"click #categoryCancel": function (event) {
+			"click #userCancel": function (event) {
 				window.App.router.navigate("admin/categories", { trigger: true });
 			}
 		}
