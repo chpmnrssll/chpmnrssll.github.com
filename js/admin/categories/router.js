@@ -35,7 +35,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 			});
 		},
 		updateCategory: function (id) {
-			require([ "admin/pages/updateView" ], function (View) {
+			require([ "admin/categories/updateView" ], function (View) {
 				window.App.adminNav.model.set({ active: "categories" });
 				window.App.header.show(window.App.adminNav.view);
 				
