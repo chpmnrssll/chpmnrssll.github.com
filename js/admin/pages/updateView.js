@@ -3,17 +3,19 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!admin/pages/upd
 		template: _.template(Template),
 		className: "container",
 		events: {
-			"click #save": function (event) {
-				require([ "admin/pages/model" ], function (Model) {
-					var page = new Model({ category: $("category").val, date: $("date").val, title: $("title").val, content: $("content").val });
-					page.save({
-						success: function (model, response, options) {
-							window.App.router.navigate("admin/pages", { trigger: true });
-						}
-					});
+			"click #pageSave": function (event) {
+				this.model.save({
+					category: $("#pageCategory").val(),
+					date: $("#pageDate").val(),
+					title: $("#pageTitle").val(),
+					content: $("#pageContent").val()
+				}, {
+					success: function (model, response, options) {
+						window.App.router.navigate("admin/pages", { trigger: true });
+					}
 				});
 			},
-			"click #cancel": function (event) {
+			"click #pageCancel": function (event) {
 				window.App.router.navigate("#admin/pages", { trigger: true });
 			}
 		}

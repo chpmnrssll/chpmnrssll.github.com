@@ -25,10 +25,10 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 			});
 		},
 		createPage: function () {
-			require([ "admin/pages/updateView" ], function (View) {
+			require([ "admin/pages/model", "admin/pages/updateView" ], function (Model, View) {
 				window.App.adminNav.model.set({ active: "pages" });
 				window.App.header.show(window.App.adminNav.view);
-				window.App.content.show(new View());
+				window.App.content.show(new View({ model: new Model() }));
 			});
 		},
 		updatePage: function (id) {
