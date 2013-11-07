@@ -8,45 +8,45 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		},
 		initialize: function () {
 			window.App.categories = {};
-		},
-		categories: function () {
-			require([ "admin/categories/collection", "admin/categories/collectionView" ], function (Collection, View) {
-				window.App.adminNav.model.set({ active: "categories" });
-				window.App.header.show(window.App.adminNav.view);
+			
+			require([ "admin/categories/collection" ], function (Collection) {
 				new Collection().fetch({
 					success: function (collection, response, options) {
 						window.App.categories.collection = collection;
-						window.App.content.show(new View({ collection: collection }));
 					}
 				});
+			});
+		},
+		categories: function () {
+			require([ "admin/categories/collectionView" ], function (View) {
+				window.App.adminNav.model.set({ active: "categories" });
+				window.App.header.show(window.App.adminNav.view);
+				window.App.content.show(new View({ collection: window.App.categories.collection }));
 			});
 		},
 		createCategory: function () {
-			require([ "admin/categories/model" ], function (Model) {
+			require([ "admin/categories/model", "admin/categories/updateView" ], function (Model, View) {
 				window.App.adminNav.model.set({ active: "categories" });
 				window.App.header.show(window.App.adminNav.view);
+				
 				var category = new Model();
-				category.save({ name: prompt("Name:", "") }, {
-					success: function (model, response, options) {
-						window.App.router.navigate("admin/categories", { trigger: true });
-					}
-				});
+				window.App.categories.collection.add(category);
+				window.App.content.show(new View({ model: category }));
 			});
 		},
 		updateCategory: function (id) {
-			window.App.adminNav.model.set({ active: "categories" });
-			window.App.header.show(window.App.adminNav.view);
-			var category = window.App.categories.collection.findWhere({ id: id });
-			category.save({ name: prompt("Name:", category.get("name")) }, {
-				success: function (model, response, options) {
-					window.App.router.navigate("admin/categories", { trigger: true });
-				}
+			require([ "admin/pages/updateView" ], function (View) {
+				window.App.adminNav.model.set({ active: "categories" });
+				window.App.header.show(window.App.adminNav.view);
+				
+				var category = window.App.categories.collection.findWhere({ id: id });
+				window.App.content.show(new View({ model: category }));
 			});
 		},
 		deleteCategory: function (id) {
-			var model = window.App.categories.collection.findWhere({ id: id });
 			if(confirm("Delete Category?")) {
-				model.destroy({
+				var category = window.App.categories.collection.findWhere({ id: id });
+				category.destroy({
 					success: function (model, response, options) {
 						window.App.router.navigate("admin/categories", { trigger: true });
 					}
