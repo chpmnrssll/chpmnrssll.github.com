@@ -28,20 +28,25 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 			require([ "admin/pages/model", "admin/pages/updateView" ], function (Model, View) {
 				window.App.adminNav.model.set({ active: "pages" });
 				window.App.header.show(window.App.adminNav.view);
-				window.App.content.show(new View({ model: new Model() }));
+				
+				var page = new Model();
+				window.App.pages.collection.add(page);
+				window.App.content.show(new View({ model: page }));
 			});
 		},
 		updatePage: function (id) {
 			require([ "admin/pages/updateView" ], function (View) {
 				window.App.adminNav.model.set({ active: "pages" });
 				window.App.header.show(window.App.adminNav.view);
-				window.App.content.show(new View({ model: window.App.pages.collection.findWhere({ id: id }) }));
+				
+				var page = window.App.pages.collection.findWhere({ id: id });
+				window.App.content.show(new View({ model: page }));
 			});
 		},
 		deletePage: function (id) {
-			var model = window.App.pages.collection.findWhere({ id: id });
 			if(confirm("Delete Page?")) {
-				model.destroy({
+				var page = window.App.pages.collection.findWhere({ id: id });
+				page.destroy({
 					success: function (model, response, options) {
 						window.App.router.navigate("admin/pages", { trigger: true });
 					}
