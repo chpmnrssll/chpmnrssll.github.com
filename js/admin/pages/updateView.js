@@ -5,8 +5,8 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!admin/pages/upd
 		events: {
 			"click #save": function (event) {
 				require([ "admin/pages/model" ], function (Model) {
-					var page = new Model();
-					page.save({ category: prompt("Category:", ""), title: prompt("Title:", ""), date: prompt("Date:", "") }, {
+					var page = new Model({ category: $("category").val, date: $("date").val, title: $("title").val, content: $("content").val });
+					page.save({
 						success: function (model, response, options) {
 							window.App.router.navigate("admin/pages", { trigger: true });
 						}

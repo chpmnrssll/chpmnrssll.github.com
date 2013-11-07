@@ -2,8 +2,8 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 	return Backbone.Model.extend({
 		defaults: {
 			category: "",
-			title: "",
 			date: "",
+			title: "",
 			content: ""
 		},
 		urlRoot: window.App.apiUrl + "pages/",
