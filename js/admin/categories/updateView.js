@@ -8,6 +8,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!admin/categorie
 					name: $("#categoryName").val(),
 				}, {
 					success: function (model, response, options) {
+						window.App.collections.categories.add(model);
 						window.App.router.navigate("admin/categories", { trigger: true });
 					}
 				});

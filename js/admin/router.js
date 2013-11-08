@@ -11,16 +11,15 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/users/router",
 			}
 			
 			require([ "admin/nav/model", "admin/nav/view" ], function (Model, View) {
-				window.App.adminNav = {};
-				window.App.adminNav.model = new Model();
-				window.App.adminNav.view = new View({ model: window.App.adminNav.model });
+				window.App.models.adminNav = new Model();
+				window.App.views.adminNav = new View({ model: window.App.models.adminNav });
 			});
 		},
 		admin: function () {
-			require([ "admin/view" ], function (View) {
-				window.App.adminNav.model.set({ active: "admin" });
-				window.App.header.show(window.App.adminNav.view);
-				window.App.content.show(new View());
+			require([ "admin/collectionView" ], function (View) {
+				window.App.models.adminNav.set({ active: "admin" });
+				window.App.header.show(window.App.views.adminNav);
+				window.App.content.show(new View({ collection: window.App.collections.pages }));
 			});
 		}
 	});

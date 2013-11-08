@@ -42,6 +42,31 @@ require([ "jquery", "underscore", "backbone", "marionette", "router" ], function
 		window.App.router = new Router();
 		window.App.models = {};
 		window.App.views = {};
+		window.App.collections = {};
+		
+		require([ "admin/users/collection" ], function (Collection) {
+			new Collection().fetch({
+				success: function (collection, response, options) {
+					window.App.collections.users = collection;
+				}
+			});
+		});
+		
+		require([ "admin/categories/collection" ], function (Collection) {
+			new Collection().fetch({
+				success: function (collection, response, options) {
+					window.App.collections.categories = collection;
+				}
+			});
+		});
+		
+		require([ "admin/pages/collection" ], function (Collection) {
+			new Collection().fetch({
+				success: function (collection, response, options) {
+					window.App.collections.pages = collection;
+				}
+			});
+		});
 		
 		require([ "auth/model", "auth/view" ], function (AuthModel, AuthView) {
 			window.App.models.AuthModel = new AuthModel();

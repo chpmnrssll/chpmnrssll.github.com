@@ -11,6 +11,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!admin/pages/upd
 					content: $("#pageContent").val()
 				}, {
 					success: function (model, response, options) {
+						window.App.collections.pages.add(model);
 						window.App.router.navigate("admin/pages", { trigger: true });
 					}
 				});
