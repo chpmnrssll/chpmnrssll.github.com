@@ -4,7 +4,6 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!admin/users/upd
 		className: "container",
 		events: {
 			"click #userSave": function (event) {
-				console.log($("userEmail").val());
 				this.model.save({
 					name: $("#userName").val(),
 					email: $("#userEmail").val()
