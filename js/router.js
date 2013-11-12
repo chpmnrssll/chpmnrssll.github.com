@@ -10,9 +10,22 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], fun
 			}
 		},
 		home: function () {
-			require([ "home/view" ], function (HomeView) {
+			require([ "home/collectionView" ], function (View) {
 				window.App.header.close();
-				window.App.content.show(new HomeView());
+				
+				//update collection first
+				window.App.collections.pages.fetch({
+					success: function (collection, response, options) {
+						collection.set(collection.filter(
+							function (page) {
+								return page.get("category") !== "Admin";
+							}
+						));
+						window.App.content.show(new View({ collection: collection }));
+					}
+				});
+				
+				//window.App.content.show(new View());
 			});
 		},
 		error: function () {

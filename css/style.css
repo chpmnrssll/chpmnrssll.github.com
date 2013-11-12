@@ -21,4 +21,19 @@ article {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-}}
+}
+
+hr.style-eight {
+	border-top: 1px solid #333;
+	text-align: center;
+}
+
+hr.style-eight:after {
+	content: "§";
+	display: inline-block;
+	position: relative; 
+	top: -1.1em;  
+	font-size: 0.75em;
+	padding: 0 0.25em;
+	background: white;
+}
