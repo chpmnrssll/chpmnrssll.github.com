@@ -1,4 +1,5 @@
-define([ "jquery", "underscore", "backbone", "marionette", "admin/users/router", "admin/categories/router", "admin/pages/router" ], function($, _, Backbone, Marionette, UsersRouter, CategoriesRouter, PagesRouter) {
+define([ "jquery", "underscore", "backbone", "marionette", "admin/users/router", "admin/categories/router", "admin/pages/router" ],
+	function($, _, Backbone, Marionette, UsersRouter, CategoriesRouter, PagesRouter) {
 	return Backbone.Router.extend({
 		routes: {
 			"admin": "admin",
@@ -19,7 +20,18 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/users/router",
 			require([ "admin/collectionView" ], function (View) {
 				window.App.models.adminNav.set({ active: "admin" });
 				window.App.header.show(window.App.views.adminNav);
-				window.App.content.show(new View({ collection: window.App.collections.pages.where({ category: "Admin" }) }));
+				
+				//update collection first
+				window.App.collections.pages.fetch({
+					success: function (collection, response, options) {
+						collection.set(collection.filter(
+							function (page) {
+								return page.get("category") === "Admin";
+							}
+						));
+						window.App.content.show(new View({ collection: collection }));
+					}
+				});
 			});
 		}
 	});

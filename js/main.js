@@ -62,11 +62,13 @@ require([ "jquery", "underscore", "backbone", "marionette"], function($, _, Back
 				collection.fetch();
 			});
 			
+			
+			window.App.router = new Router();
+			
 			if (Backbone.history) {
 				Backbone.history.start();
 			}
 			
-			window.App.router = new Router();
 			window.App.auth.show(window.App.views.auth);
 		});
 		

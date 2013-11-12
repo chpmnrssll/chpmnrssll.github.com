@@ -10,7 +10,13 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 			require([ "admin/pages/collectionView" ], function (View) {
 				window.App.models.adminNav.set({ active: "pages" });
 				window.App.header.show(window.App.views.adminNav);
-				window.App.content.show(new View({ collection: window.App.collections.pages }));
+				
+				//update collection first
+				window.App.collections.pages.fetch({
+					success: function (collection, response, options) {
+						window.App.content.show(new View({ collection: collection }));
+					}
+				});
 			});
 		},
 		createPage: function () {
@@ -27,8 +33,13 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 				window.App.models.adminNav.set({ active: "pages" });
 				window.App.header.show(window.App.views.adminNav);
 				
-				var page = window.App.collections.pages.findWhere({ id: id });
-				window.App.content.show(new View({ model: page }));
+				//update collection first
+				window.App.collections.pages.fetch({
+					success: function (collection, response, options) {
+						var page = collection.findWhere({ id: id });
+						window.App.content.show(new View({ model: page }));
+					}
+				});
 			});
 		},
 		deletePage: function (id) {

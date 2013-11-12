@@ -10,7 +10,13 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 			require([ "admin/users/collectionView" ], function (View) {
 				window.App.models.adminNav.set({ active: "users" });
 				window.App.header.show(window.App.views.adminNav);
-				window.App.content.show(new View({ collection: window.App.collections.users }));
+				
+				//update collection first
+				window.App.collections.users.fetch({
+					success: function (collection, response, options) {
+						window.App.content.show(new View({ collection: collection }));
+					}
+				});
 			});
 		},
 		createUser: function () {
@@ -27,8 +33,13 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 				window.App.models.adminNav.set({ active: "users" });
 				window.App.header.show(window.App.views.adminNav);
 				
-				var user = window.App.collections.users.findWhere({ id: id });
-				window.App.content.show(new View({ model: user }));
+				//update collection first
+				window.App.collections.users.fetch({
+					success: function (collection, response, options) {
+						var user = collection.findWhere({ id: id });
+						window.App.content.show(new View({ model: user }));
+					}
+				});
 			});
 		},
 		deleteUser: function (id) {

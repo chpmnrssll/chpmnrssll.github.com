@@ -1,3 +1,8 @@
-<header><h2><%= obj.title %>&nbsp;&nbsp;<small><%= obj.date %></small></h2></header>
+<header>
+	<h2>
+		<%= obj.title %>
+		<small class="pull-right"><%= obj.date %><br/><%= obj.category %></small>
+	</h2>
+</header>
 <hr/>
 <%= obj.content %>

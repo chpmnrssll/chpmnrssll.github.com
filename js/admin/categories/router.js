@@ -10,7 +10,13 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 			require([ "admin/categories/collectionView" ], function (View) {
 				window.App.models.adminNav.set({ active: "categories" });
 				window.App.header.show(window.App.views.adminNav);
-				window.App.content.show(new View({ collection: window.App.collections.categories }));
+				
+				//update collection first
+				window.App.collections.categories.fetch({
+					success: function (collection, response, options) {
+						window.App.content.show(new View({ collection: collection }));
+					}
+				});
 			});
 		},
 		createCategory: function () {
@@ -27,8 +33,13 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 				window.App.models.adminNav.set({ active: "categories" });
 				window.App.header.show(window.App.views.adminNav);
 				
-				var category = window.App.collections.categories.findWhere({ id: id });
-				window.App.content.show(new View({ model: category }));
+				//update collection first
+				window.App.collections.categories.fetch({
+					success: function (collection, response, options) {
+						var category = collection.findWhere({ id: id });
+						window.App.content.show(new View({ model: category }));
+					}
+				});
 			});
 		},
 		deleteCategory: function (id) {
