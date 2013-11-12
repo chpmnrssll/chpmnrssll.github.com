@@ -13,3 +13,12 @@
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
+
+article {
+	border: 1px solid #888;
+	margin: 14px;
+	padding: 14px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}}
