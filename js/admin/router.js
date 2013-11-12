@@ -19,7 +19,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/users/router",
 			require([ "admin/collectionView" ], function (View) {
 				window.App.models.adminNav.set({ active: "admin" });
 				window.App.header.show(window.App.views.adminNav);
-				window.App.content.show(new View({ collection: window.App.collections.pages }));
+				window.App.content.show(new View({ collection: window.App.collections.pages.where({ category: "Admin" }) }));
 			});
 		}
 	});
