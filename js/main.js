@@ -27,56 +27,49 @@ require.config({
 	}
 });
 
-require([ "jquery", "underscore", "backbone", "marionette", "router" ], function($, _, Backbone, Marionette, Router) {
+require([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backbone, Marionette) {
 	window.App = new Marionette.Application();
+	window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";	//"http://localhost/api/";
 	
 	window.App.addInitializer(function(options) {
-		window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";	//"http://localhost/api/";
-		window.App.addRegions({
-			body: "body",
-			auth: "#auth",
-			header: "#header",
-			content: "#content",
-			footer: "#footer"
-		});
-		window.App.router = new Router();
-		window.App.models = {};
-		window.App.views = {};
-		window.App.collections = {};
-		
-		require([ "admin/users/collection" ], function (Collection) {
-			new Collection().fetch({
-				success: function (collection, response, options) {
-					window.App.collections.users = collection;
-				}
+		require([ "auth/model", "auth/view", "admin/users/collection", "admin/categories/collection", "admin/pages/collection", "router" ],
+			function (AuthModel, AuthView, UsersCollection, CategoriesCollection, PagesCollection, Router) {
+			
+			window.App.addRegions({
+				body: "body",
+				auth: "#auth",
+				header: "#header",
+				content: "#content",
+				footer: "#footer"
 			});
-		});
-		
-		require([ "admin/categories/collection" ], function (Collection) {
-			new Collection().fetch({
-				success: function (collection, response, options) {
-					window.App.collections.categories = collection;
-				}
+			
+			
+			window.App.models = {
+				auth: new AuthModel()
+			}
+			
+			window.App.views = {
+				auth: new AuthView({ model: window.App.models.auth })
+			}
+			
+			window.App.collections = {
+				users:  new UsersCollection(),
+				categories: new CategoriesCollection(),
+				pages: new PagesCollection()
+			}
+			
+			_.each(window.App.collections, function(collection, key, list) {
+				collection.fetch();
 			});
-		});
-		
-		require([ "admin/pages/collection" ], function (Collection) {
-			new Collection().fetch({
-				success: function (collection, response, options) {
-					window.App.collections.pages = collection;
-				}
-			});
-		});
-		
-		require([ "auth/model", "auth/view" ], function (AuthModel, AuthView) {
-			window.App.models.AuthModel = new AuthModel();
-			window.App.views.AuthView = new AuthView({ model: window.App.models.AuthModel });
-			window.App.auth.show(window.App.views.AuthView);
 			
 			if (Backbone.history) {
 				Backbone.history.start();
 			}
+			
+			window.App.router = new Router();
+			window.App.auth.show(window.App.views.auth);
 		});
+		
 	});
 
 	window.App.start();
