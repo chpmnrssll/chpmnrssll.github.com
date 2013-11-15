@@ -9,7 +9,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!admin/users/upd
 					email: $("#userEmail").val()
 				}, {
 					success: function (model, response, options) {
-						window.App.collections.users.add(user);
+						window.App.collections.users.add(model);
 						window.App.router.navigate("admin/users", { trigger: true });
 					}
 				});
