@@ -24,8 +24,6 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], fun
 						window.App.content.show(new View({ collection: collection }));
 					}
 				});
-				
-				//window.App.content.show(new View());
 			});
 		},
 		error: function () {

@@ -9,7 +9,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		pages: function () {
 			require([ "admin/pages/collectionView" ], function (View) {
 				window.App.models.adminNav.set({ active: "pages" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				//update collection first
 				window.App.collections.pages.fetch({
@@ -22,7 +22,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		createPage: function () {
 			require([ "admin/pages/model", "admin/pages/updateView" ], function (Model, View) {
 				window.App.models.adminNav.set({ active: "pages" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				var page = new Model();
 				window.App.content.show(new View({ model: page }));
@@ -31,7 +31,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		updatePage: function (id) {
 			require([ "admin/pages/updateView" ], function (View) {
 				window.App.models.adminNav.set({ active: "pages" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				//update collection first
 				window.App.collections.pages.fetch({

@@ -9,7 +9,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		users: function () {
 			require([ "admin/users/collectionView" ], function (View) {
 				window.App.models.adminNav.set({ active: "users" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				//update collection first
 				window.App.collections.users.fetch({
@@ -22,7 +22,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		createUser: function () {
 			require([ "admin/users/model", "admin/users/updateView" ], function (Model, View) {
 				window.App.models.adminNav.set({ active: "users" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				var user = new Model();
 				window.App.content.show(new View({ model: user }));
@@ -31,7 +31,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		updateUser: function (id) {
 			require([ "admin/users/updateView" ], function (View) {
 				window.App.models.adminNav.set({ active: "users" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				//update collection first
 				window.App.collections.users.fetch({

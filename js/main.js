@@ -37,7 +37,7 @@ require([ "jquery", "underscore", "backbone", "marionette"], function($, _, Back
 			
 			window.App.addRegions({
 				body: "body",
-				auth: "#auth",
+				navbar: "#navbar",
 				header: "#header",
 				content: "#content",
 				footer: "#footer"

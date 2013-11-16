@@ -9,7 +9,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		categories: function () {
 			require([ "admin/categories/collectionView" ], function (View) {
 				window.App.models.adminNav.set({ active: "categories" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				//update collection first
 				window.App.collections.categories.fetch({
@@ -22,7 +22,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		createCategory: function () {
 			require([ "admin/categories/model", "admin/categories/updateView" ], function (Model, View) {
 				window.App.models.adminNav.set({ active: "categories" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				var category = new Model();
 				window.App.content.show(new View({ model: category }));
@@ -31,7 +31,7 @@ define([ "jquery", "underscore", "backbone", "marionette" ], function($, _, Back
 		updateCategory: function (id) {
 			require([ "admin/categories/updateView" ], function (View) {
 				window.App.models.adminNav.set({ active: "categories" });
-				window.App.header.show(window.App.views.adminNav);
+				window.App.navbar.show(window.App.views.adminNav);
 				
 				//update collection first
 				window.App.collections.categories.fetch({
