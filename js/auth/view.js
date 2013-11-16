@@ -21,19 +21,18 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 						xhr.setRequestHeader('AUTH_PW', $("#userPassword").val());
 					},
 					success: function(data) {
-						console.log(typeof data);
+						//console.log(typeof data);
 						//if(data[0].auth) {
 							that.model.set("auth", true);
-							$("#userAuth").toggleClass("has-error");
-							//$("#userNameInput").toggleClass("has-error");
-							//$("#userPasswordInput").toggleClass("has-error");
+							$(".auth").removeClass("has-error");
 						//}
 					},
 					statusCode: {
+						401: function() {
+							$(".auth").addClass("has-error");
+						},
 						403: function() {
-							$("#userAuth").toggleClass("has-error");
-							//$("#userNameInput").toggleClass("has-error");
-							//$("#userPasswordInput").toggleClass("has-error");
+							$(".auth").addClass("has-error");
 						}
 					}
 				});
