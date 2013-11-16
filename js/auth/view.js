@@ -12,11 +12,25 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 		events: {
 			"click #login": function (e) {
 				e.preventDefault();
+				$.ajax({
+					url: window.App.apiUrl + "auth/",
+					type: "GET",
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader('AUTH_USER', $("#userName").val());
+						xhr.setRequestHeader('AUTH_PW', $("#userPassword").val());
+					},
+					success: function(data) {
+						console.log(data);
+						this.model.set("auth", true);
+					}
+				});
 				//this.model.set("auth", true);
+				/*
 				this.model.save({
 					username: $("#userName").val(),
 					password: $("#userPassword").val()
 				});
+				*/
 			},
 			"click #logout": function (e) {
 				e.preventDefault();
