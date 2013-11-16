@@ -24,7 +24,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 					success: function(data) {
 						that.model.set("auth", true);
 						$(".auth").removeClass("has-error");
-						window.App.router.navigate("", { trigger: true });
+						window.App.router.navigate("admin/", { trigger: true });
 					},
 					statusCode: {
 						403: function() {
