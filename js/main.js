@@ -69,7 +69,7 @@ require([ "jquery", "underscore", "backbone", "marionette"], function($, _, Back
 				Backbone.history.start();
 			}
 			
-			window.App.auth.show(window.App.views.auth);
+			window.App.navbar.show(window.App.views.auth);
 		});
 		
 	});
