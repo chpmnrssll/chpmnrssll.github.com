@@ -1,6 +1,7 @@
 define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTemplate.html", "text!auth/controlsTemplate.html" ], function($, _, Backbone, Marionette, LoginTemplate, ControlsTemplate) {
 	return Backbone.Marionette.ItemView.extend({
-		className: "container auth",
+		tagName: "form",
+		className: "form-inline auth",
 		getTemplate: function() {
 			return this.model.get("auth") ? _.template(ControlsTemplate) : _.template(LoginTemplate);
 		},
@@ -10,7 +11,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 			}
 		},
 		events: {
-			"click #login": function (e) {
+			"submit": function (e) {
 				var that = this;
 				e.preventDefault();
 				$.ajax({
@@ -21,16 +22,10 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 						xhr.setRequestHeader('AUTH_PW', $("#userPassword").val());
 					},
 					success: function(data) {
-						//console.log(typeof data);
-						//if(data[0].auth) {
-							that.model.set("auth", true);
-							$(".auth").removeClass("has-error");
-						//}
+						that.model.set("auth", true);
+						$(".auth").removeClass("has-error");
 					},
 					statusCode: {
-						401: function() {
-							$(".auth").addClass("has-error");
-						},
 						403: function() {
 							$(".auth").addClass("has-error");
 						}
