@@ -21,10 +21,10 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 						xhr.setRequestHeader('AUTH_PW', $("#userPassword").val());
 					},
 					success: function(data) {
-						console.log(data);
-						if(data.auth) {
+						alert(data);
+						//if(data.auth) {
 							that.model.set("auth", true);
-						}
+						//}
 					}
 				});
 				//this.model.set("auth", true);
