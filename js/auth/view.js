@@ -12,7 +12,11 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 		events: {
 			"click #login": function (e) {
 				e.preventDefault();
-				this.model.set("auth", true);
+				//this.model.set("auth", true);
+				this.model.save({
+					username: $("#userName").val(),
+					password: $("#userPassword").val()
+				});
 			},
 			"click #logout": function (e) {
 				e.preventDefault();
