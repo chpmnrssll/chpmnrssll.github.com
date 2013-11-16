@@ -24,16 +24,17 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 						console.log(typeof data);
 						//if(data[0].auth) {
 							that.model.set("auth", true);
+							$("#userNameInput").toggleClass("has-error");
+							$("#userPasswordInput").toggleClass("has-error");
 						//}
+					},
+					statusCode: {
+						403: function() {
+							$("#userNameInput").toggleClass("has-error");
+							$("#userPasswordInput").toggleClass("has-error");
+						}
 					}
 				});
-				//this.model.set("auth", true);
-				/*
-				this.model.save({
-					username: $("#userName").val(),
-					password: $("#userPassword").val()
-				});
-				*/
 			},
 			"click #logout": function (e) {
 				e.preventDefault();
