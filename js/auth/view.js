@@ -21,8 +21,8 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 						xhr.setRequestHeader('AUTH_PW', $("#userPassword").val());
 					},
 					success: function(data) {
-						console.log(data.object);
-						if(data.object.auth) {
+						console.log(data);
+						if(data.auth) {
 							that.model.set("auth", true);
 						}
 					}
