@@ -15,8 +15,8 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 				var that = this;
 				e.preventDefault();
 				$.ajax({
-					url: window.App.apiUrl + "auth/",
 					type: "GET",
+					url: window.App.apiUrl + "auth/",
 					beforeSend: function(xhr) {
 						xhr.setRequestHeader('AUTH_USER', $("#userName").val());
 						xhr.setRequestHeader('AUTH_PW', $("#userPassword").val());

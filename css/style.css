@@ -3,12 +3,14 @@ li.done {
 }
 
 .auth {
+	/*
 	border: 1px solid #ccc;
 	width: 40%;
 	padding: 10px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	*/
 }
 
 article {
