@@ -24,14 +24,16 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 						console.log(typeof data);
 						//if(data[0].auth) {
 							that.model.set("auth", true);
-							$("#userNameInput").toggleClass("has-error");
-							$("#userPasswordInput").toggleClass("has-error");
+							$("#userAuth").toggleClass("has-error");
+							//$("#userNameInput").toggleClass("has-error");
+							//$("#userPasswordInput").toggleClass("has-error");
 						//}
 					},
 					statusCode: {
 						403: function() {
-							$("#userNameInput").toggleClass("has-error");
-							$("#userPasswordInput").toggleClass("has-error");
+							$("#userAuth").toggleClass("has-error");
+							//$("#userNameInput").toggleClass("has-error");
+							//$("#userPasswordInput").toggleClass("has-error");
 						}
 					}
 				});
