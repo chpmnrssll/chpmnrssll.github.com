@@ -38,7 +38,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 			"click #logout": function (e) {
 				e.preventDefault();
 				this.model.set("auth", false);
-				window.App.router.navigate("")
+				window.App.router.navigate("", { trigger: true })
 			}
 		}
 	});
