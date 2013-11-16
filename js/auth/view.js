@@ -11,6 +11,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 		},
 		events: {
 			"click #login": function (e) {
+				var that = this;
 				e.preventDefault();
 				$.ajax({
 					url: window.App.apiUrl + "auth/",
@@ -21,7 +22,7 @@ define([ "jquery", "underscore", "backbone", "marionette", "text!auth/loginTempl
 					},
 					success: function(data) {
 						console.log(data);
-						this.model.set("auth", true);
+						that.model.set("auth", true);
 					}
 				});
 				//this.model.set("auth", true);
