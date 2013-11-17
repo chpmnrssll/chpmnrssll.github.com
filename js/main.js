@@ -2,6 +2,7 @@ require.config({
 	urlArgs: "bust=" +  (new Date()).getTime(),
 	paths: {
 		jquery: "libs/jquery/jquery.min",
+		bootstrap: "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min",
 		underscore: "libs/underscore/underscore.min",
 		backbone: "libs/backbone/backbone.min",
 		"backbone.wreqr": "libs/backbone.marionette/backbone.wreqr",
@@ -12,6 +13,9 @@ require.config({
 	shim: {
 		jquery: {
 			exports: "$"
+		},
+		bootstrap: {
+			exports: "Bootstrap"
 		},
 		underscore: {
 			exports: "_"
@@ -27,7 +31,7 @@ require.config({
 	}
 });
 
-require([ "jquery", "underscore", "backbone", "marionette"], function($, _, Backbone, Marionette) {
+require([ "jquery", "bootstrap", "underscore", "backbone", "marionette"], function($, Bootstrap, _, Backbone, Marionette) {
 	window.App = new Marionette.Application();
 	window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";	//"http://localhost/api/";
 	
@@ -70,7 +74,6 @@ require([ "jquery", "underscore", "backbone", "marionette"], function($, _, Back
 			}
 			
 			window.App.navbar.show(window.App.views.auth);
-			console.log("window.App.navbar.show exists");
 		});
 		
 	});
