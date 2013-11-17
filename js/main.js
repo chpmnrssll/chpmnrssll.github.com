@@ -70,6 +70,7 @@ require([ "jquery", "underscore", "backbone", "marionette"], function($, _, Back
 			}
 			
 			window.App.navbar.show(window.App.views.auth);
+			console.log("window.App.navbar.show exists");
 		});
 		
 	});
