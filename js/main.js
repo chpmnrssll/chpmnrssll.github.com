@@ -42,9 +42,7 @@ require([ "jquery", "bootstrap", "underscore", "backbone", "marionette"], functi
 			window.App.addRegions({
 				body: "body",
 				navbar: "#navbar",
-				header: "#header",
 				content: "#content",
-				footer: "#footer"
 			});
 			
 			

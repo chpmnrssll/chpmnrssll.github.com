@@ -9,15 +9,10 @@
 		
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
-		
-		<!--<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
 	</head>
 	<body>
-		<!-- <canvas id="canvasBackground" width="320" height="240"></canvas> -->
 		<div id="navbar"></div>
-		<div id="header"></div>
 		<div id="content"><strong><em class="text-muted">Loading</em></strong></div>
-		<div id="footer"></div>
 		
 		<script>
 			var require = {
@@ -26,32 +21,5 @@
 			};
 		</script>
 		<script src="js/libs/require/require.js"></script>
-		
-		<!--
-		<script>
-			(function () {
-				//Get context, precalc some variables, and create screen buffer
-				var canvas = document.getElementById('canvasBackground');
-				var context2D = canvas.getContext('2d');
-				var bufferSize = canvas.width*canvas.height;
-				var buffer = context2D.createImageData(canvas.width, canvas.height);
-				
-				setInterval(function () {
-					//Pick random lightness for every pixel
-					for(var i = 0; i < bufferSize; i++) {
-						var c = Math.floor(Math.random()*255);
-						var index = i*4;
-						buffer.data[index++] = c;	//red
-						buffer.data[index++] = c;	//green
-						buffer.data[index++] = c;	//blue
-						buffer.data[index++] = 64;	//alpha
-					}
-					
-					//Flip buffer to canvas
-					context2D.putImageData(buffer, 0,0);
-				}, 1000/30); //30 FPS
-			})();
-		</script>
-		-->
 	</body>
 </html>

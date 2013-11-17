@@ -11,8 +11,6 @@ define([ "jquery", "underscore", "backbone", "marionette", "admin/router" ], fun
 		},
 		home: function () {
 			require([ "home/collectionView" ], function (View) {
-				window.App.header.close();
-				
 				//update collection first
 				window.App.collections.pages.fetch({
 					success: function (collection, response, options) {
