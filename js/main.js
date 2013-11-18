@@ -1,39 +1,38 @@
 require.config({
 	urlArgs: "bust=" +  (new Date()).getTime(),
 	paths: {
-		jquery: "libs/jquery/jquery.min",
-		bootstrap: "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min",
-		underscore: "libs/underscore/underscore.min",
-		backbone: "libs/backbone/backbone.min",
+		"jquery": "libs/jquery/jquery.min",
+		"jquery.bootstrap": "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min",
+		"underscore": "libs/underscore/underscore.min",
+		"backbone": "libs/backbone/backbone.min",
 		"backbone.wreqr": "libs/backbone.marionette/backbone.wreqr",
 		"backbone.eventbinder": "libs/backbone.marionette/backbone.eventbinder",
 		"backbone.babysitter": "libs/backbone.marionette/backbone.babysitter",
-		marionette: "libs/backbone.marionette/backbone.marionette.min",
+		"marionette": "libs/backbone.marionette/backbone.marionette.min"
 	},
 	shim: {
-		jquery: {
+		"jquery": {
 			exports: "$"
 		},
-		bootstrap: {
+		"jquery.bootstrap": {
 			deps: [ "jquery" ],
-			exports: "Bootstrap"
 		},
-		underscore: {
+		"underscore": {
 			deps: [ "jquery" ],
 			exports: "_"
 		},
-		backbone: {
+		"backbone": {
 			deps: [ "jquery", "underscore" ],
 			exports: "Backbone"
 		},
-		marionette: {
+		"marionette": {
 			deps: [ "jquery", "underscore", "backbone" ],
 			exports: "Marionette"
 		}
 	}
 });
 
-require([ "jquery", "bootstrap", "underscore", "backbone", "marionette"], function($, Bootstrap, _, Backbone, Marionette) {
+require([ "jquery", "jquery.bootstrap", "underscore", "backbone", "marionette"], function($, Bootstrap, _, Backbone, Marionette) {
 	window.App = new Marionette.Application();
 	window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";	//"http://localhost/api/";
 	
@@ -46,7 +45,6 @@ require([ "jquery", "bootstrap", "underscore", "backbone", "marionette"], functi
 				navbar: "#navbar",
 				content: "#content",
 			});
-			
 			
 			window.App.models = {
 				auth: new AuthModel()
