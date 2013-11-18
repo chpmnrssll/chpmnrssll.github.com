@@ -15,17 +15,19 @@ require.config({
 			exports: "$"
 		},
 		bootstrap: {
+			deps: [ "jquery" ],
 			exports: "Bootstrap"
 		},
 		underscore: {
+			deps: [ "jquery" ],
 			exports: "_"
 		},
 		backbone: {
-			deps: ["jquery", "underscore"],
+			deps: [ "jquery", "underscore" ],
 			exports: "Backbone"
 		},
 		marionette: {
-			deps: ["jquery", "underscore", "backbone"],
+			deps: [ "jquery", "underscore", "backbone" ],
 			exports: "Marionette"
 		}
 	}
@@ -73,7 +75,6 @@ require([ "jquery", "bootstrap", "underscore", "backbone", "marionette"], functi
 			
 			window.App.navbar.show(window.App.views.auth);
 		});
-		
 	});
 
 	window.App.start();
