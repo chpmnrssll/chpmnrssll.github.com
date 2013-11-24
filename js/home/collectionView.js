@@ -3,5 +3,6 @@ define([ "jquery", "underscore", "backbone", "marionette", "home/itemView", "tex
 		itemView: ItemView,
 		itemViewContainer: "#homeContent",
 		template: _.template(Template),
+		className: "container"
 	});
 });
