@@ -4,8 +4,8 @@ define(
         "underscore",
         "backbone",
         "marionette",
-        "views/pages/itemView",
-        "text!templates/pages/collectionTemplate.html"
+        "views/pages/item",
+        "text!templates/pages/collection.html"
     ],
     function ($, _, Backbone, Marionette, ItemView, Template) {
 
@@ -13,8 +13,6 @@ define(
 
     return Backbone.Marionette.CompositeView.extend({
         itemView : ItemView,
-        itemViewContainer : "tbody",
-        template : _.template(Template),
-        className : "container"
+        template : _.template(Template)
     });
 });

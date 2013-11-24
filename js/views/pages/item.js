@@ -4,7 +4,7 @@ define(
         "underscore",
         "backbone",
         "marionette",
-        "text!templates/home/itemTemplate.html"
+        "text!templates/pages/item.html"
     ],
     function ($, _, Backbone, Marionette, Template) {
 

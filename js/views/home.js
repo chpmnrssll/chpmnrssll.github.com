@@ -4,16 +4,13 @@ define(
         "underscore",
         "backbone",
         "marionette",
-        "views/home/itemView",
-        "text!templates/home/collectionTemplate.html"
+        "text!templates/home.html"
     ],
-    function ($, _, Backbone, Marionette, ItemView, Template) {
+    function ($, _, Backbone, Marionette, Template) {
 
     "use strict";
 
     return Backbone.Marionette.CompositeView.extend({
-        itemView : ItemView,
-        itemViewContainer : "#homeContent",
         template : _.template(Template)
     });
 });

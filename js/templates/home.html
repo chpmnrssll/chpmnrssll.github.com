@@ -1,0 +1,21 @@
+<div class="jumbotron">
+	<h1>Main Header</h1>
+    <h2><small>Sub Header</small></h2>
+</div>
+<div id="pages"></div>
+<%
+require(["views/pages/collection"], function (View) {
+    window.App.collections.pages.fetch({
+        success : function (collection, response, options) {
+            collection.set(collection.filter(
+                function (page) {
+                    return page.get("category") !== "Admin";    //Lame filter
+                }
+            ));
+
+            var region = new Backbone.Marionette.Region({ el: "#pages" });
+            region.show(new View({ collection : window.App.collections.pages }));
+        }
+    });
+});
+%>

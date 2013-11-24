@@ -18,12 +18,12 @@ define(
         initialize : function () {
             /*
             this._subRouters = {
-                admin : new AdminRouter()
+            admin : new AdminRouter()
             }
              */
         },
         home : function () {
-            require(["views/home/collectionView"], function (View) {
+            require(["views/home"], function (View) {
 
                 //update collection first
                 window.App.collections.pages.fetch({
@@ -32,9 +32,8 @@ define(
                                 function (page) {
                                 return page.get("category") !== "Admin";
                             }));
-                        window.App.content.show(new View({
-                                collection : collection
-                            }));
+
+                        window.App.content.show(new View());
                     }
                 });
 
