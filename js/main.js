@@ -47,11 +47,14 @@ require(
         require(
             [
                 "router",
+                "models/navbar",
                 "collections/pages"
             ],
-            function (Router, PagesCollection) {
+            function (Router, NavbarModel, PagesCollection) {
 
             window.App.router = new Router();
+
+            window.App.navbarModel = new NavbarModel();
 
             window.App.collections = {
                 pages : new PagesCollection()

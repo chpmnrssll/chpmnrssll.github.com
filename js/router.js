@@ -23,20 +23,9 @@ define(
              */
         },
         home : function () {
-            require(["views/home"], function (View) {
-
-                //update collection first
-                window.App.collections.pages.fetch({
-                    success : function (collection, response, options) {
-                        collection.set(collection.filter(
-                                function (page) {
-                                return page.get("category") !== "Admin";
-                            }));
-
-                        window.App.content.show(new View());
-                    }
-                });
-
+            require(["views/navbar", "views/home"], function (NavbarView, HomeView) {
+                window.App.navbar.show(new NavbarView());
+                window.App.content.show(new HomeView());
             });
         },
         error : function () {
