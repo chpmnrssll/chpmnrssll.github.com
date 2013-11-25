@@ -1,13 +1,4 @@
-define(
-    [
-        "jquery",
-        "underscore",
-        "backbone",
-        "marionette",
-        "text!templates/home.html"
-    ],
-    function ($, _, Backbone, Marionette, Template) {
-
+define(["text!templates/home.html"], function (Template) {
     "use strict";
 
     return Backbone.Marionette.CompositeView.extend({

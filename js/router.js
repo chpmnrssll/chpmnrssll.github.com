@@ -1,13 +1,4 @@
-define(
-    [
-        "jquery",
-        "underscore",
-        "backbone",
-        "marionette",
-        "admin/router"
-    ],
-    function ($, _, Backbone, Marionette, AdminRouter) {
-
+define(["admin/router"], function (AdminRouter) {
     "use strict";
 
     return Backbone.Router.extend({
@@ -16,14 +7,13 @@ define(
             "*actions" : "error"
         },
         initialize : function () {
-            /*
-            this._subRouters = {
+            /* this._subRouters = {
             admin : new AdminRouter()
-            }
-             */
+            } */
         },
         home : function () {
             require(["views/navbar", "views/home"], function (NavbarView, HomeView) {
+                window.App.navbarModel.set("active", "home");
                 window.App.navbar.show(new NavbarView());
                 window.App.content.show(new HomeView());
             });

@@ -1,13 +1,4 @@
-define(
-    [
-        "jquery",
-        "underscore",
-        "backbone",
-        "marionette",
-        "models/user"
-    ],
-    function ($, _, Backbone, Marionette, Model) {
-
+define(["models/user"], function (Model) {
     "use strict";
 
     return Backbone.Collection.extend({

@@ -1,13 +1,4 @@
-define(
-    [
-        "jquery",
-        "underscore",
-        "backbone",
-        "marionette",
-        "text!templates/pages/item.html"
-    ],
-    function ($, _, Backbone, Marionette, Template) {
-
+define(["text!templates/pages/item.html"], function (Template) {
     "use strict";
 
     return Backbone.Marionette.ItemView.extend({

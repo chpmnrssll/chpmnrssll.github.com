@@ -37,12 +37,10 @@ require(
         "underscore"
     ],
     function (Backbone, Bootstrap, $, Marionette, _) {
-
     "use strict";
 
     window.App = new Marionette.Application();
     window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";
-
     window.App.addInitializer(function (options) {
         require(
             [

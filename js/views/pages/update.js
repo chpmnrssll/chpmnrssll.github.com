@@ -1,13 +1,4 @@
-define(
-    [
-        "jquery",
-        "underscore",
-        "backbone",
-        "marionette",
-        "text!admin/pages/updateTemplate.html"
-    ],
-    function ($, _, Backbone, Marionette, Template) {
-
+define(["text!admin/pages/updateTemplate.html"], function (Template) {
     "use strict";
 
     return Backbone.Marionette.CompositeView.extend({
