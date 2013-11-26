@@ -44,13 +44,17 @@ require(
     window.App.addInitializer(function (options) {
         require(
             [
-                "router",
+                "routers/main",
+                "routers/auth",
                 "models/navbar",
                 "collections/pages"
             ],
-            function (Router, NavbarModel, PagesCollection) {
+            function (MainRouter, AuthRouter, NavbarModel, PagesCollection) {
 
-            window.App.router = new Router();
+            window.App.routers = {
+                main : new MainRouter(),
+                auth : new AuthRouter()
+            };
 
             window.App.navbarModel = new NavbarModel();
 
@@ -119,8 +123,8 @@ require(
 
         });
          */
-        //console.log("window.App.initialize");
 
+        //console.log("window.App.initialize");
     });
 
     window.App.start();

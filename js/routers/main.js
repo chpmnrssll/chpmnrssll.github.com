@@ -1,4 +1,5 @@
-define(["admin/router"], function (AdminRouter) {
+//define(["admin/router"], function (AdminRouter) {
+define([], function () {
     "use strict";
 
     return Backbone.Router.extend({
