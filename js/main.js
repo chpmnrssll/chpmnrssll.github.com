@@ -42,22 +42,25 @@ require(
     window.App = new Marionette.Application();
     window.App.apiUrl = "http://chpmn-rssll.rhcloud.com/";
     window.App.addInitializer(function (options) {
-        require(
-            [
-                "routers/main",
-                "routers/auth",
-                "models/navbar",
-                "collections/pages"
-            ],
-            function (MainRouter, AuthRouter, NavbarModel, PagesCollection) {
-
+        require(["routers/main", "routers/auth"], function (MainRouter, AuthRouter) {
             window.App.routers = {
                 main : new MainRouter(),
                 auth : new AuthRouter()
             };
+        });
+        
+        require(["models/navbar","views/navbar"], function (NavbarModel, NavbarView) {
+            window.App.addRegions({
+                navbar : "#navbar",
+                content : "#content"
+            });
 
             window.App.navbarModel = new NavbarModel();
+            window.App.navbarView = new NavbarView({ model : window.App.navbarModel })
+            window.App.navbar.show(window.App.navbarView);
+        });
 
+        require(["collections/pages"], function (PagesCollection) {
             window.App.collections = {
                 pages : new PagesCollection()
             };
@@ -66,65 +69,30 @@ require(
                 collection.fetch();
             });
 
-            window.App.addRegions({
-                navbar : "#navbar",
-                content : "#content"
-            });
-
             if (Backbone.history) {
                 Backbone.history.start();
             }
         });
+        
 
         /*
-        require(
-        [
-        "auth/model",
-        "auth/view",
-        "admin/users/collection",
-        "admin/categories/collection",
-        "admin/pages/collection",
-        "router"
-        ],
-        function (AuthModel, AuthView, UsersCollection, CategoriesCollection, PagesCollection, Router) {
+        require(["auth/model", "auth/view" ], function (AuthModel, AuthView) {
 
-        window.App.addRegions({
-        body : "body",
-        navbar : "#navbar",
-        content : "#content"
-        });
+            window.App.models = {
+                auth : new AuthModel()
+            };
 
-        window.App.models = {
-        auth : new AuthModel()
-        };
+            window.App.views = {
+                auth : new AuthView({
+                    model : window.App.models.auth
+                })
+            };
 
-        window.App.views = {
-        auth : new AuthView({
-        model : window.App.models.auth
-        })
-        };
+            window.App.navbar.show(window.App.views.auth);
+            });
 
-        window.App.collections = {
-        users : new UsersCollection(),
-        categories : new CategoriesCollection(),
-        pages : new PagesCollection()
-        };
-
-        _.each(window.App.collections, function (collection, key, list) {
-        collection.fetch();
-        });
-
-        window.App.router = new Router();
-        if (Backbone.history) {
-        Backbone.history.start();
-        }
-
-        window.App.navbar.show(window.App.views.auth);
-
-        });
-         */
-
-        //console.log("window.App.initialize");
+            //console.log("window.App.initialize");
+        */
     });
 
     window.App.start();
