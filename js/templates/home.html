@@ -10,7 +10,7 @@ require(["views/pages/collection"], function (View) {
         success : function (collection, response, options) {
             collection.set(collection.filter(
                 function (page) {
-                    return page.get("category") !== "Admin";    //Lame filter
+                    return page.get("category") === "Admin";    //Lame filter
                 }
             ));
 
