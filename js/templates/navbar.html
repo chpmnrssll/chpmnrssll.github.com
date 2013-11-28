@@ -9,10 +9,28 @@
 	<ul class="nav navbar-nav">
         <% var active = window.App.navbarModel.get("active"); %>
         <li <%= (active == "home") ? "class='active'" : "" %>><a href="#"><i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;Home</a></li>
-		<li <%= (active == "users") ? "class='active'" : "" %>><a href="#admin/users"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Users</a></li>
-		<li <%= (active == "categories") ? "class='active'" : "" %>><a href="#admin/categories"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Categories</a></li>
-		<li <%= (active == "pages") ? "class='active'" : "" %>><a href="#admin/pages"><i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;Pages</a></li>
-	</ul>
+        <li <%= (active == "manage") ? "class='active dropdown'" : "class='dropdown'" %>>
+            <!--
+            <a href="#auth/manage" style="display:inline-block">
+                <i class="glyphicon glyphicon-briefcase"></i>&nbsp;&nbsp;Manage
+            </a>
+            <span class="caret dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"></span>
+            -->
+            <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                <i class="glyphicon glyphicon-briefcase"></i>&nbsp;&nbsp;Manage&nbsp;&nbsp;<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#auth/manage/categories">Categories</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#auth/manage/pages">Pages</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#auth/manage/users">Users</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#auth/manage/roles">Roles</a></li>
+            </ul>
+        </li>
+        <!-- <li <%= (active == "manage") ? "class='active'" : "" %>><a href="#auth/manage"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;&nbsp;Manage</a></li> -->
+        <li <%= (active == "settings") ? "class='active'" : "" %>><a href="#auth/settings"><i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;Settings</a></li>
+    </ul>
+    
 	<form class="navbar-form navbar-right">
 		<div class="col-xs-5">
 			<input type="text" class="form-control input-sm" id="userName" placeholder="Username">

@@ -1,4 +1,4 @@
-define(["admin/router"], function (AdminRouter) {
+define([], function () {
     "use strict";
 
     return Backbone.Router.extend({
@@ -6,16 +6,10 @@ define(["admin/router"], function (AdminRouter) {
             "" : "home",
             "*actions" : "error"
         },
-        initialize : function () {
-            /* this._subRouters = {
-            admin : new AdminRouter()
-            } */
-        },
         home : function () {
-            require(["views/navbar", "views/home"], function (NavbarView, HomeView) {
+            require(["views/home"], function (View) {
                 window.App.navbarModel.set("active", "home");
-                window.App.navbar.show(new NavbarView());
-                window.App.content.show(new HomeView());
+                window.App.content.show(new View());
             });
         },
         error : function () {
