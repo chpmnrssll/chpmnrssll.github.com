@@ -5,7 +5,7 @@ define(["text!templates/navbar.html"], function (Template) {
         template : _.template(Template),
         tagName : "nav",
         className : "navbar navbar-default navbar-static-top",
-        modelEvents: {
+        modelEvents : {
             "change" : "modelChanged"
         },
         modelChanged : function () {

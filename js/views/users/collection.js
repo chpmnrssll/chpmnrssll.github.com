@@ -1,4 +1,4 @@
-define(["views/users/itemView", "text!templates/users/collectionTemplate.html"], function (ItemView, Template) {
+define(["views/users/item", "text!templates/users/collection.html"], function (ItemView, Template) {
     "use strict";
 
     return Backbone.Marionette.CompositeView.extend({

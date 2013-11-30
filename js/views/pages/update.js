@@ -1,4 +1,4 @@
-define(["text!admin/pages/updateTemplate.html"], function (Template) {
+define(["text!templates/pages/update.html"], function (Template) {
     "use strict";
 
     return Backbone.Marionette.CompositeView.extend({
@@ -14,14 +14,14 @@ define(["text!admin/pages/updateTemplate.html"], function (Template) {
                 }, {
                     success : function (model, response, options) {
                         window.App.collections.pages.add(model);
-                        window.App.router.navigate("admin/pages", {
+                        window.App.router.navigate("auth/manage/pages", {
                             trigger : true
                         });
                     }
                 });
             },
             "click #pageCancel" : function (event) {
-                window.App.router.navigate("admin/pages", {
+                window.App.router.navigate("auth/manage/pages", {
                     trigger : true
                 });
             }

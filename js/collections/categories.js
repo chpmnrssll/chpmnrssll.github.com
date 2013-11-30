@@ -1,6 +1,8 @@
-define([ 'jquery', 'underscore', 'backbone', 'marionette', 'admin/categories/model' ], function($, _, Backbone, Marionette, Model) {
-	return Backbone.Collection.extend({
-		model: Model,
-		url: window.App.apiUrl + 'categories/'
-	});
+define(["models/category"], function (Model) {
+    "use strict";
+
+    return Backbone.Collection.extend({
+        model : Model,
+        url : window.App.apiUrl + 'categories/'
+    });
 });

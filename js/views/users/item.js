@@ -1,4 +1,4 @@
-define(["text!admin/users/itemTemplate.html"], function (Template) {
+define(["text!templates/users/item.html"], function (Template) {
     "use strict";
 
     return Backbone.Marionette.ItemView.extend({
