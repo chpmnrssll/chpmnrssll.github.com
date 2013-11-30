@@ -3,14 +3,17 @@ define([], function () {
 
     return Backbone.Router.extend({
         routes : {
-            "auth/manage" : "manage",
+            "auth/manage/:collection(/:document)" : "manage",
             "auth/settings" : "settings",
         },
-        manage : function () {
-            require(["views/manage"], function (View) {
-                window.App.navbarModel.set("active", "manage");
-                window.App.content.show(new View());
-            });
+        manage : function (collection, document) {
+            if ((typeof collection == "string") && (!document)) {
+                var url = "views/manage_" + collection;
+                require([url], function (View) {
+                    window.App.navbarModel.set("active", "manage");
+                    window.App.content.show(new View());
+                });
+            }
         },
         settings : function () {
             require(["views/settings"], function (View) {

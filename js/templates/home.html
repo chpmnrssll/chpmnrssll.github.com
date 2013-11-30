@@ -8,12 +8,6 @@ require(["views/pages/collection"], function (View) {
     // fetch/filter collection before showing
     window.App.collections.pages.fetch({
         success : function (collection, response, options) {
-            collection.set(collection.filter(
-                function (page) {
-                    return page.get("category") === "Admin";    //Lame filter
-                }
-            ));
-
             var region = new Backbone.Marionette.Region({ el: "#pages" });
             region.show(new View({ collection : window.App.collections.pages }));
         }
