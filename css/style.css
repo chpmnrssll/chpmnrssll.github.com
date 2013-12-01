@@ -69,6 +69,10 @@ article h2 {
     box-shadow:         9px 5px 10px rgba(128, 128, 128, 0.5);
 }
 
+.pagination {
+	margin: 0;
+}
+
 li.done {
 	text-decoration:line-through;
 }

@@ -3,7 +3,7 @@ define([], function () {
 
     return Backbone.Router.extend({
         routes : {
-            "auth/manage/:collection(/:document)" : "manage",
+            "auth/manage(/:collection(/:document))" : "manage",
             "auth/settings" : "settings",
         },
         manage : function (collection, document) {

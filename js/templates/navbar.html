@@ -11,9 +11,11 @@
         <li <%= (active == "home") ? "class='active'" : "" %>><a href="#"><i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;Home</a></li>
         <li <%= (active == "manage") ? "class='active dropdown'" : "class='dropdown'" %>>
             <a href="#" class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-briefcase"></i>&nbsp;&nbsp;Manage&nbsp;&nbsp;<span class="caret"></span>
+                <i class="glyphicon glyphicon-briefcase"></i>&nbsp;&nbsp;Content&nbsp;&nbsp;<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+				<li><a href="#auth/manage"><i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;Manage Types</a></li>
+				<li class="divider"></li>
                 <li><a href="#auth/manage/categories"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Categories</a></li>
                 <li><a href="#auth/manage/pages"><i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;Pages</a></li>
                 <li class="divider"></li>
@@ -25,12 +27,6 @@
     </ul>
     
 	<form class="navbar-form navbar-right">
-		<div class="col-xs-5">
-			<input type="text" class="form-control input-sm" id="userName" placeholder="Username">
-		</div>
-		<div class="col-xs-5">
-			<input type="password" class="form-control input-sm" id="userPassword" placeholder="Password">
-		</div>
-		<button type="submit" class="btn btn-default input-sm" id="login">Log in</button>
+		<button type="submit" class="btn btn-default input-sm" id="logout">Log out</button>
 	</form>
 </div>
