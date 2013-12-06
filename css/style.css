@@ -73,6 +73,12 @@ article h2 {
 	margin: 0;
 }
 
+a.btn, .btn-group, .pagination {
+-webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+-moz-box-shadow:    2px 2px 4px rgba(0, 0, 0, 0.5);
+box-shadow:         2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 li.done {
 	text-decoration:line-through;
 }
