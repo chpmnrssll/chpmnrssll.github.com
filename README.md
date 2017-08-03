@@ -1,5 +1,3 @@
-# chpmnrssll.github.io
-
 Multi-user content management app.
 
 Client app coded with:
